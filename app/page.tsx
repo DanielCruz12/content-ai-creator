@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ModeToggle } from "../components/toggle-dark-mode";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
+          <ModeToggle />
             By{" "}
             <Image
               src="/vercel.svg"
