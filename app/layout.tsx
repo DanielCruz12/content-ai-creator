@@ -18,7 +18,6 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
-        <head />
         <body
           className={cn(
             "min-h-screen font-sans antialiased",
@@ -31,7 +30,6 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <ModeToggle />
             {children}
           </ThemeProvider>
         </body>
