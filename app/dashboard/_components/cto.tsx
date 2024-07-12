@@ -58,7 +58,7 @@ const Cto = () => {
               src="/diamond.png"
               width={1824}
               height={1080}
-              className="absolute left-0 top-0 w-[27rem] max-w-none rounded-md"
+              className="absolute left-0 top-0 w-[20rem] md:w-[27rem] max-w-none rounded-md"
             />
           </div>
         </div>
