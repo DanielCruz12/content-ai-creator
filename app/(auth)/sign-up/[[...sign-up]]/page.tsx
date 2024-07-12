@@ -1,17 +1,24 @@
-'use client';
-import * as Clerk from '@clerk/elements/common';
-import * as SignUp from '@clerk/elements/sign-up';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Icons } from '@/components/ui/Icons';
-import { cn } from '@/lib/utils';
+"use client";
+import * as Clerk from "@clerk/elements/common";
+import * as SignUp from "@clerk/elements/sign-up";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Icons } from "@/components/ui/Icons";
+import { cn } from "@/lib/utils";
 
 export default function SignUpPage() {
   return (
-    <div className="grid w-full grow items-center px-4 sm:justify-center">
+    <div className="grid h-screen w-full grow items-center px-4 sm:justify-center">
       <SignUp.Root>
         <Clerk.Loading>
           {(isGlobalLoading) => (
@@ -20,12 +27,19 @@ export default function SignUpPage() {
                 <Card className="w-full sm:w-96">
                   <CardHeader>
                     <CardTitle>Create your account</CardTitle>
-                    <CardDescription>Welcome! Please fill in the details to get started.</CardDescription>
+                    <CardDescription>
+                      Welcome! Please fill in the details to get started.
+                    </CardDescription>
                   </CardHeader>
                   <CardContent className="grid gap-y-4">
                     <div className="grid grid-cols-2 gap-x-4">
                       <Clerk.Connection name="github" asChild>
-                        <Button size="sm" variant="outline" type="button" disabled={isGlobalLoading}>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          type="button"
+                          disabled={isGlobalLoading}
+                        >
                           <Clerk.Loading scope="provider:github">
                             {(isLoading) =>
                               isLoading ? (
@@ -41,7 +55,12 @@ export default function SignUpPage() {
                         </Button>
                       </Clerk.Connection>
                       <Clerk.Connection name="google" asChild>
-                        <Button size="sm" variant="outline" type="button" disabled={isGlobalLoading}>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          type="button"
+                          disabled={isGlobalLoading}
+                        >
                           <Clerk.Loading scope="provider:google">
                             {(isLoading) =>
                               isLoading ? (
@@ -85,13 +104,19 @@ export default function SignUpPage() {
                         <Button disabled={isGlobalLoading}>
                           <Clerk.Loading>
                             {(isLoading) => {
-                              return isLoading ? <Icons.spinner className="size-4 animate-spin" /> : 'Continue';
+                              return isLoading ? (
+                                <Icons.spinner className="size-4 animate-spin" />
+                              ) : (
+                                "Continue"
+                              );
                             }}
                           </Clerk.Loading>
                         </Button>
                       </SignUp.Action>
                       <Button variant="link" size="sm" asChild>
-                        <Link href="/sign-in">Already have an account? Sign in</Link>
+                        <Link href="/sign-in">
+                          Already have an account? Sign in
+                        </Link>
                       </Button>
                     </div>
                   </CardFooter>
@@ -120,7 +145,11 @@ export default function SignUpPage() {
                         <Button disabled={isGlobalLoading}>
                           <Clerk.Loading>
                             {(isLoading) => {
-                              return isLoading ? <Icons.spinner className="size-4 animate-spin" /> : 'Continue';
+                              return isLoading ? (
+                                <Icons.spinner className="size-4 animate-spin" />
+                              ) : (
+                                "Continue"
+                              );
                             }}
                           </Clerk.Loading>
                         </Button>
@@ -135,12 +164,16 @@ export default function SignUpPage() {
                   <Card className="w-full sm:w-96">
                     <CardHeader>
                       <CardTitle>Verify your email</CardTitle>
-                      <CardDescription>Use the verification link sent to your email address</CardDescription>
+                      <CardDescription>
+                        Use the verification link sent to your email address
+                      </CardDescription>
                     </CardHeader>
                     <CardContent className="grid gap-y-4">
                       <div className="grid items-center justify-center gap-y-2">
                         <Clerk.Field name="code" className="space-y-2">
-                          <Clerk.Label className="sr-only">Email address</Clerk.Label>
+                          <Clerk.Label className="sr-only">
+                            Email address
+                          </Clerk.Label>
                           <div className="flex justify-center text-center">
                             <Clerk.Input
                               type="otp"
@@ -151,15 +184,16 @@ export default function SignUpPage() {
                                   <div
                                     data-status={status}
                                     className={cn(
-                                      'relative flex size-10 items-center justify-center border-y border-r border-input text-sm transition-all first:rounded-l-md first:border-l last:rounded-r-md',
+                                      "relative flex size-10 items-center justify-center border-y border-r border-input text-sm transition-all first:rounded-l-md first:border-l last:rounded-r-md",
                                       {
-                                        'z-10 ring-2 ring-ring ring-offset-background':
-                                          status === 'cursor' || status === 'selected',
-                                      },
+                                        "z-10 ring-2 ring-ring ring-offset-background":
+                                          status === "cursor" ||
+                                          status === "selected",
+                                      }
                                     )}
                                   >
                                     {value}
-                                    {status === 'cursor' && (
+                                    {status === "cursor" && (
                                       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
                                         <div className="animate-caret-blink h-4 w-px bg-foreground duration-1000" />
                                       </div>
@@ -178,7 +212,10 @@ export default function SignUpPage() {
                           fallback={({ resendableAfter }) => (
                             <Button variant="link" size="sm" disabled>
                               Didn&apos;t recieve a code? Resend (
-                              <span className="tabular-nums">{resendableAfter}</span>)
+                              <span className="tabular-nums">
+                                {resendableAfter}
+                              </span>
+                              )
                             </Button>
                           )}
                         >
@@ -194,7 +231,11 @@ export default function SignUpPage() {
                           <Button disabled={isGlobalLoading}>
                             <Clerk.Loading>
                               {(isLoading) => {
-                                return isLoading ? <Icons.spinner className="size-4 animate-spin" /> : 'Continue';
+                                return isLoading ? (
+                                  <Icons.spinner className="size-4 animate-spin" />
+                                ) : (
+                                  "Continue"
+                                );
                               }}
                             </Clerk.Loading>
                           </Button>

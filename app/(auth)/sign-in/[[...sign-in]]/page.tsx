@@ -17,7 +17,7 @@ import { Icons } from "@/components/ui/Icons";
 
 export default function SignInPage() {
   return (
-    <div className="grid w-full grow items-center px-4 sm:justify-center">
+    <div className="grid h-screen w-full grow items-center px-4 sm:justify-center">
       <SignIn.Root>
         <Clerk.Loading>
           {(isGlobalLoading) => (
@@ -77,7 +77,7 @@ export default function SignInPage() {
                         </Button>
                       </Clerk.Connection>
                     </div>
-                    <p className="flex items-center gap-x-3 text-sm text-muted-foreground before:h-px before:flex-1 before:bg-border after:h-px after:flex-1 after:bg-border">
+                {/*     <p className="flex items-center gap-x-3 text-sm text-muted-foreground before:h-px before:flex-1 before:bg-border after:h-px after:flex-1 after:bg-border">
                       or
                     </p>
                     <Clerk.Field name="identifier" className="space-y-2">
@@ -88,7 +88,7 @@ export default function SignInPage() {
                         <Input />
                       </Clerk.Input>
                       <Clerk.FieldError className="block text-sm text-destructive" />
-                    </Clerk.Field>
+                    </Clerk.Field> */}
                   </CardContent>
                   <CardFooter>
                     <div className="grid w-full gap-y-4">
