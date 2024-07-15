@@ -5,8 +5,8 @@ import { TemplateList } from "./_components/template-list";
 const Dashboard = () => {
   return (
     <div className="flex flex-col items-center rounded-lg w-full">
-      <Cto />
       <TemplateList />
+      <Cto />
     </div>
   );
 };

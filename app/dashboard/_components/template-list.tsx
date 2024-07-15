@@ -1,5 +1,22 @@
 import React from "react";
+import { CardDemo } from "./card-list";
+import { CardWithForm } from "./card";
 
 export const TemplateList = () => {
-  return <div className=""></div>;
+  return (
+    <div className="grid gap-4 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 py-6">
+        <CardWithForm />
+        <CardWithForm />
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 ">
+        <CardDemo />
+        <CardDemo />
+        <CardDemo />
+        <CardDemo />
+        <CardDemo />
+        <CardDemo />
+      </div>
+    </div>
+  );
 };
