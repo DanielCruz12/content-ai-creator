@@ -1,4 +1,4 @@
-"use client";
+/* "use client";
 import * as Clerk from "@clerk/elements/common";
 import * as SignIn from "@clerk/elements/sign-in";
 import Link from "next/link";
@@ -77,7 +77,7 @@ export default function SignInPage() {
                         </Button>
                       </Clerk.Connection>
                     </div>
-                {/*     <p className="flex items-center gap-x-3 text-sm text-muted-foreground before:h-px before:flex-1 before:bg-border after:h-px after:flex-1 after:bg-border">
+                    <p className="flex items-center gap-x-3 text-sm text-muted-foreground before:h-px before:flex-1 before:bg-border after:h-px after:flex-1 after:bg-border">
                       or
                     </p>
                     <Clerk.Field name="identifier" className="space-y-2">
@@ -88,7 +88,7 @@ export default function SignInPage() {
                         <Input />
                       </Clerk.Input>
                       <Clerk.FieldError className="block text-sm text-destructive" />
-                    </Clerk.Field> */}
+                    </Clerk.Field>
                   </CardContent>
                   <CardFooter>
                     <div className="grid w-full gap-y-4">
@@ -301,3 +301,11 @@ export default function SignInPage() {
     </div>
   );
 }
+ */
+import React from "react";
+
+const Sign = () => {
+  return <div>Sign</div>;
+};
+
+export default Sign;

@@ -1,4 +1,4 @@
-"use client";
+/* "use client";
 import * as Clerk from "@clerk/elements/common";
 import * as SignUp from "@clerk/elements/sign-up";
 import Link from "next/link";
@@ -252,3 +252,12 @@ export default function SignUpPage() {
     </div>
   );
 }
+ */
+
+import React from "react";
+
+const SignUp = () => {
+  return <div>SignUp</div>;
+};
+
+export default SignUp;
