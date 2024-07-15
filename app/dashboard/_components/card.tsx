@@ -5,13 +5,30 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 
 export function CardWithForm() {
   return (
-    <Card className="w-full bg-gradient-to-r from-gray-900 from-10% via-sky-900 via-30% to-[#000000] to-90% hover:cursor-pointer hover:border-slate-500 border	">
+    <Card
+      className="w-full bg-gradient-to-r
+    from-[#02585f]
+    via-[#9b5378]
+    to-[#646464] background-animate hover:cursor-pointer hover:border-slate-500 border	"
+    >
       <CardHeader>
-        <CardTitle className=" text-white">Create project</CardTitle>
-        <CardDescription>Deploy your new project in one-click.</CardDescription>
+        <div className="grid md:grid-cols-2 grid-cols-1 ">
+          <div className="flex flex-col">
+            <CardTitle className=" text-white">Create project</CardTitle>
+            <CardDescription className="text-gray-300">
+              Deploy your new project in one-click.
+            </CardDescription>
+          </div>
+          <div className="flex py-3">
+            <form className="w-full">
+              <Input placeholder="Search...." />
+            </form>
+          </div>
+        </div>
       </CardHeader>
     </Card>
   );
