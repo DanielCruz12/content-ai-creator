@@ -27,7 +27,10 @@ type CardDemoProps = {
 
 export function CardDemo({ className, tool, ...props }: CardDemoProps) {
   return (
-    <Card className={cn("w-[300px] md:w-[390px]", className)} {...props}>
+    <Card
+      className={cn("w-[290px] md:w-auto max-w-[370px]", className)}
+      {...props}
+    >
       <CardHeader>
         <CardTitle>{tool.name}</CardTitle>
         <CardDescription>{tool.desc}</CardDescription>
