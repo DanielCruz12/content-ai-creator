@@ -1,16 +1,11 @@
 import React from "react";
-import {
-  HomeIcon,
-  GearIcon,
-  InfoCircledIcon,
-  ExitIcon,
-} from "@radix-ui/react-icons";
+import { HomeIcon, GearIcon, InfoCircledIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 
 const sidebarItems = [
-  { label: "Home", icon: HomeIcon, href: "#" },
-  { label: "Settings", icon: GearIcon, href: "#" },
-  { label: "About", icon: InfoCircledIcon, href: "#" },
+  { label: "Home", icon: HomeIcon, href: "/" },
+  { label: "Settings", icon: GearIcon, href: "/" },
+  { label: "About", icon: InfoCircledIcon, href: "/" },
 ];
 
 export const Sidebar = () => {
@@ -36,7 +31,7 @@ export const Sidebar = () => {
           ))}
         </ul>
       </nav>
-      <div className="mt-auto">
+      {/*  <div className="mt-auto">
         <Link
           href="#"
           className="flex items-center p-3 rounded hover:bg-[#dedede] dark:hover:bg-[#000]"
@@ -44,7 +39,7 @@ export const Sidebar = () => {
           <ExitIcon className="mr-3 text-black dark:text-white" />
           <span className="text-black dark:text-white">Logout</span>
         </Link>
-      </div>
+      </div> */}
     </aside>
   );
 };

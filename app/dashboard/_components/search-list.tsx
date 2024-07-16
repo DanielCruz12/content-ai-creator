@@ -20,14 +20,14 @@ export function SearchList({ setInputValueSearch }: any) {
       className="w-full flex-1 bg-gradient-to-r
     from-[#272828]
     via-[#444444]
-    to-[#000000] background-animate hover:cursor-pointer hover:border-slate-500 border	"
+    to-[#000000] background-animate hover:border-slate-500 border	"
     >
       <CardHeader>
         <div className="w-full">
           <div className="flex flex-col">
-            <CardTitle className=" text-white">Create project</CardTitle>
-            <CardDescription className="text-gray-300">
-              Deploy your new project in one-click.
+            <CardTitle className=" text-white">Search Ai Tool</CardTitle>
+            <CardDescription className="text-gray-300 pt-1">
+              What do you want to generate today?
             </CardDescription>
           </div>
           <div className="flex py-3">
@@ -46,7 +46,7 @@ export function SearchList({ setInputValueSearch }: any) {
                       setInputValueSearch(e.target.value);
                     }}
                     type="text"
-                    placeholder="Search..."
+                    placeholder="Generate post ideas..."
                     as={Input}
                     className="mb-2"
                   />
