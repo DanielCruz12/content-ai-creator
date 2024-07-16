@@ -14,18 +14,16 @@ const SearchSchema = Yup.object().shape({
   value: Yup.string().required("Required"),
 });
 
-export function SearchList() {
-  const [inputValueSearch, setInputValueSearch] = React.useState("");
-  console.log(inputValueSearch);
+export function SearchList({ setInputValueSearch }: any) {
   return (
     <Card
-      className="w-full bg-gradient-to-r
-    from-[#00292d]
-    via-[#5e5e5e]
+      className="w-full flex-1 bg-gradient-to-r
+    from-[#272828]
+    via-[#444444]
     to-[#000000] background-animate hover:cursor-pointer hover:border-slate-500 border	"
     >
       <CardHeader>
-        <div className="grid md:grid-cols-2 grid-cols-1 ">
+        <div className="w-full">
           <div className="flex flex-col">
             <CardTitle className=" text-white">Create project</CardTitle>
             <CardDescription className="text-gray-300">

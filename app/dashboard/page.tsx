@@ -5,7 +5,9 @@ import { TemplateList } from "./_components/template-list";
 const Dashboard = () => {
   return (
     <div className="flex flex-col items-center rounded-lg w-full">
-      <TemplateList />
+      <div className="w-full">
+        <TemplateList />
+      </div>
       <Cto />
     </div>
   );

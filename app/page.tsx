@@ -7,7 +7,7 @@ import Link from "next/link";
 export default function Home() {
   const cookieStore = cookies();
   const session = cookieStore.get("__session");
-  console.log(session);
+
   return (
     <>
       {/* Hero */}
