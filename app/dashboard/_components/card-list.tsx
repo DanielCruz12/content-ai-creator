@@ -10,6 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { FocusIcon } from "lucide-react";
 
 type Tool = {
   name: string;
@@ -28,23 +29,28 @@ type CardDemoProps = {
 export function CardDemo({ className, tool, ...props }: CardDemoProps) {
   return (
     <Card
-      className={cn("w-[290px] md:w-auto max-w-[370px]", className)}
+      className={cn(
+        "w-[290px] border-[1px] dark:border-[#2c2c2c] border-[#6d6d6d] md:w-auto max-w-[370px]",
+        className
+      )}
       {...props}
     >
       <CardHeader>
         <CardTitle>{tool.name}</CardTitle>
-        <CardDescription>{tool.desc}</CardDescription>
+        <CardDescription className="text-primary">
+          {tool.desc}
+        </CardDescription>
       </CardHeader>
       <CardContent className="grid gap-4">
         <div className=" flex items-center space-x-4 rounded-md border p-4">
-          {/* <FocusIcon /> */}
-          <img className="w-7 h-7" src={tool.icon} alt={tool.desc} />
+          <FocusIcon /> 
+          {/* <img className="w-7 h-7" src={tool.icon} alt={tool.desc} /> */}
           <div className="flex-1 space-y-1">
             <p className="text-sm font-medium leading-none">
               Category: {tool.category}
             </p>
             <p className="text-sm text-muted-foreground">
-              Try now! and see the magic
+              ¡Try now! and see the magic...
             </p>
           </div>
         </div>

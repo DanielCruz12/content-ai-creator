@@ -1,8 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { ChevronRightIcon } from "lucide-react";
 import { SignInButton, SignedOut } from "@clerk/nextjs";
+import { cookies } from "next/headers";
+import Link from "next/link";
 
 export default function Home() {
+  const cookieStore = cookies();
+  const session = cookieStore.get("__session");
+  console.log(session);
   return (
     <>
       {/* Hero */}
@@ -56,12 +61,18 @@ export default function Home() {
         </div>
         {/* Buttons */}
         <div className="mt-8 gap-3 flex justify-center">
-          <Button size={"lg"}>
-            {" "}
-            <SignedOut>
-              <SignInButton />
-            </SignedOut>
-          </Button>
+          {session?.value ? (
+            <Link href={"/dashboard"}>
+              <Button size={"lg"}>Dashboard</Button>
+            </Link>
+          ) : (
+            <Button size={"lg"}>
+              <SignedOut>
+                <SignInButton />
+              </SignedOut>
+            </Button>
+          )}
+
           <Button size={"lg"} variant={"outline"}>
             Learn more
           </Button>
