@@ -30,7 +30,7 @@ export function CardDemo({ className, tool, ...props }: CardDemoProps) {
   return (
     <Card
       className={cn(
-        "w-[290px] hover:cursor-pointer border-[1px] dark:border-[#2c2c2c] border-[#6d6d6d] md:w-auto max-w-[370px]",
+        "w-[310px] hover:cursor-pointer border-[1px] dark:border-[#2c2c2c] border-[#6d6d6d] md:w-auto max-w-[370px]",
         className
       )}
       {...props}

@@ -22,7 +22,7 @@ export const Sidebar = () => {
             <li key={index}>
               <Link
                 href={item.href}
-                className="flex items-center p-3 rounded hover:bg-[#d9d9d9] dark:hover:bg-[#000]"
+                className="flex items-center p-3 rounded hover:bg-[#d9d9d9] dark:hover:bg-[#272727]"
               >
                 <item.icon className="mr-3 text-black dark:text-white" />
                 <span className="text-black dark:text-white">{item.label}</span>

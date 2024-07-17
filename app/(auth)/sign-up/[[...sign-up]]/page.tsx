@@ -1,4 +1,4 @@
-/* "use client";
+"use client";
 import * as Clerk from "@clerk/elements/common";
 import * as SignUp from "@clerk/elements/sign-up";
 import Link from "next/link";
@@ -76,31 +76,10 @@ export default function SignUpPage() {
                         </Button>
                       </Clerk.Connection>
                     </div>
-                    <p className="flex items-center gap-x-3 text-sm text-muted-foreground before:h-px before:flex-1 before:bg-border after:h-px after:flex-1 after:bg-border">
-                      or
-                    </p>
-                    <Clerk.Field name="emailAddress" className="space-y-2">
-                      <Clerk.Label asChild>
-                        <Label>Email address</Label>
-                      </Clerk.Label>
-                      <Clerk.Input type="email" required asChild>
-                        <Input />
-                      </Clerk.Input>
-                      <Clerk.FieldError className="block text-sm text-destructive" />
-                    </Clerk.Field>
-                    <Clerk.Field name="password" className="space-y-2">
-                      <Clerk.Label asChild>
-                        <Label>Password</Label>
-                      </Clerk.Label>
-                      <Clerk.Input type="password" required asChild>
-                        <Input />
-                      </Clerk.Input>
-                      <Clerk.FieldError className="block text-sm text-destructive" />
-                    </Clerk.Field>
                   </CardContent>
                   <CardFooter>
                     <div className="grid w-full gap-y-4">
-                      <SignUp.Action submit asChild>
+                      {/*  <SignUp.Action submit asChild>
                         <Button disabled={isGlobalLoading}>
                           <Clerk.Loading>
                             {(isLoading) => {
@@ -112,7 +91,7 @@ export default function SignUpPage() {
                             }}
                           </Clerk.Loading>
                         </Button>
-                      </SignUp.Action>
+                      </SignUp.Action> */}
                       <Button variant="link" size="sm" asChild>
                         <Link href="/sign-in">
                           Already have an account? Sign in
@@ -252,12 +231,12 @@ export default function SignUpPage() {
     </div>
   );
 }
- */
 
-import React from "react";
+/* import React from "react";
 
 const SignUp = () => {
   return <div>SignUp</div>;
 };
 
 export default SignUp;
+ */

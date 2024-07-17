@@ -3,6 +3,7 @@ import { Inter as FontSans } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "../components/theme-provider";
 import { ClerkProvider } from "@clerk/nextjs";
+import { dark } from "@clerk/themes";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -15,7 +16,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
+    <ClerkProvider
+      appearance={{
+        baseTheme: dark,
+        layout: {
+          socialButtonsPlacement: "bottom",
+          socialButtonsVariant: "iconButton",
+          termsPageUrl: "https://clerk.com/terms",
+        },
+      }}
+    >
       <html lang="en" suppressHydrationWarning>
         <body
           className={cn(
