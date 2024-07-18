@@ -17,10 +17,10 @@ const SearchSchema = Yup.object().shape({
 export function SearchList({ setInputValueSearch }: any) {
   return (
     <Card
-      className="w-full flex-1 bg-gradient-to-r
+      className="w-full bg-gradient-to-r
     from-[#272828]
     via-[#444444]
-    to-[#000000] background-animate hover:border-slate-500 border	"
+    to-[#000000] background-animate hover:border-gray-700 border	"
     >
       <CardHeader>
         <div className="w-full">

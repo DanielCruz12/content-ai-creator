@@ -33,22 +33,10 @@ export default function SignInPage() {
           className="hidden dark:block"
         />
       </div> */}
-      <div className="container relative hidden h-screen flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
+      <div className="container relative h-screen px-10 flex-col items-center justify-center grid md:max-w-none lg:grid-cols-2 lg:px-0">
         <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
           <div className="absolute inset-0 bg-zinc-900" />
           <div className="relative z-20 flex items-center text-lg font-medium">
-            {/*      <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="mr-2 h-6 w-6"
-            >
-              <path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3" />
-            </svg> */}
             DanDev
           </div>
           <div className="relative z-20 mt-auto">
@@ -62,6 +50,9 @@ export default function SignInPage() {
           </div>
         </div>
         <div className="lg:p-8">
+          <div className="top-0 absolute pt-6 md:hidden mx-auto text-center flex items-center text-lg font-medium">
+            DanDev
+          </div>
           <div className="mx-auto flex flex-col justify-center space-y-6 w-[350px]">
             <div className="grid w-full grow items-center px-4 justify-center">
               <SignIn.Root>
@@ -69,7 +60,7 @@ export default function SignInPage() {
                   {(isGlobalLoading) => (
                     <>
                       <SignIn.Step name="start">
-                        <Card className=" w-96">
+                        <Card className=" w-full md:w-96">
                           <CardHeader>
                             <h1 className="text-2xl text-center font-semibold tracking-tight">
                               Sign in
@@ -82,27 +73,72 @@ export default function SignInPage() {
 
                           <CardContent className="grid gap-y-4">
                             <div className="grid grid-cols-1 gap-4">
-                              <Clerk.Connection name="google" asChild>
-                                <Button
-                                  size="sm"
-                                  variant="outline"
-                                  type="button"
-                                  disabled={isGlobalLoading}
-                                >
-                                  <Clerk.Loading scope="provider:google">
-                                    {(isLoading) =>
-                                      isLoading ? (
-                                        <Icons.spinner className="size-4 animate-spin" />
-                                      ) : (
-                                        <>
-                                          <Icons.google className="mr-2 size-4" />
-                                          Google
-                                        </>
-                                      )
-                                    }
-                                  </Clerk.Loading>
-                                </Button>
-                              </Clerk.Connection>
+                              <div className="grid grid-cols-3 gap-3">
+                                <Clerk.Connection name="google" asChild>
+                                  <Button
+                                    size="sm"
+                                    variant="outline"
+                                    type="button"
+                                    disabled={isGlobalLoading}
+                                  >
+                                    <Clerk.Loading scope="provider:google">
+                                      {(isLoading) =>
+                                        isLoading ? (
+                                          <Icons.spinner className="size-4 animate-spin" />
+                                        ) : (
+                                          <>
+                                            <Icons.google className="mr-2 size-4" />
+                                            Google
+                                          </>
+                                        )
+                                      }
+                                    </Clerk.Loading>
+                                  </Button>
+                                </Clerk.Connection>
+
+                                <Clerk.Connection name="github" asChild>
+                                  <Button
+                                    size="sm"
+                                    variant="outline"
+                                    type="button"
+                                    disabled={isGlobalLoading}
+                                  >
+                                    <Clerk.Loading scope="provider:github">
+                                      {(isLoading) =>
+                                        isLoading ? (
+                                          <Icons.spinner className="size-4 animate-spin" />
+                                        ) : (
+                                          <>
+                                            <Icons.gitHub className="mr-2 size-4" />
+                                            GitHub
+                                          </>
+                                        )
+                                      }
+                                    </Clerk.Loading>
+                                  </Button>
+                                </Clerk.Connection>
+                                <Clerk.Connection name="notion" asChild>
+                                  <Button
+                                    size="sm"
+                                    variant="outline"
+                                    type="button"
+                                    disabled={isGlobalLoading}
+                                  >
+                                    <Clerk.Loading scope="provider:notion">
+                                      {(isLoading) =>
+                                        isLoading ? (
+                                          <Icons.spinner className="size-4 animate-spin" />
+                                        ) : (
+                                          <>
+                                            <Icons.notion className="mr-2 size-4" />
+                                            Notion
+                                          </>
+                                        )
+                                      }
+                                    </Clerk.Loading>
+                                  </Button>
+                                </Clerk.Connection>
+                              </div>
 
                               <div className="relative flex justify-center text-xs uppercase">
                                 <span className="bg-background px-2 text-muted-foreground">
@@ -110,70 +146,29 @@ export default function SignInPage() {
                                 </span>
                               </div>
 
-                              <SignInWithMetamaskButton mode="modal">
-                                <Button
-                                  size="sm"
-                                  variant="outline"
-                                  type="button"
-                                  disabled={isGlobalLoading}
-                                >
-                                  <Clerk.Loading scope="provider:metamask">
-                                    {(isLoading) =>
-                                      isLoading ? (
-                                        <Icons.spinner className="size-4 animate-spin" />
-                                      ) : (
-                                        <>
-                                          <Icons.metamask className="mr-2 size-4" />
-                                          Metamask
-                                        </>
-                                      )
-                                    }
-                                  </Clerk.Loading>
-                                </Button>
-                              </SignInWithMetamaskButton>
-
-                              <Clerk.Connection name="github" asChild>
-                                <Button
-                                  size="sm"
-                                  variant="outline"
-                                  type="button"
-                                  disabled={isGlobalLoading}
-                                >
-                                  <Clerk.Loading scope="provider:github">
-                                    {(isLoading) =>
-                                      isLoading ? (
-                                        <Icons.spinner className="size-4 animate-spin" />
-                                      ) : (
-                                        <>
-                                          <Icons.gitHub className="mr-2 size-4" />
-                                          GitHub
-                                        </>
-                                      )
-                                    }
-                                  </Clerk.Loading>
-                                </Button>
-                              </Clerk.Connection>
-                              <Clerk.Connection name="notion" asChild>
-                                <Button
-                                  size="sm"
-                                  variant="outline"
-                                  type="button"
-                                  disabled={isGlobalLoading}
-                                >
-                                  <Clerk.Loading scope="provider:notion">
-                                    {(isLoading) =>
-                                      isLoading ? (
-                                        <Icons.spinner className="size-4 animate-spin" />
-                                      ) : (
-                                        <>
-                                          <Icons.notion className="mr-2 size-4" />
-                                          Notion
-                                        </>
-                                      )
-                                    }
-                                  </Clerk.Loading>
-                                </Button>
-                              </Clerk.Connection>
+                              <div className="grid grid-cols-1">
+                                <SignInWithMetamaskButton mode="modal">
+                                  <Button
+                                    size="sm"
+                                    variant="outline"
+                                    type="button"
+                                    disabled={isGlobalLoading}
+                                  >
+                                    <Clerk.Loading scope="provider:metamask">
+                                      {(isLoading) =>
+                                        isLoading ? (
+                                          <Icons.spinner className="size-4 animate-spin" />
+                                        ) : (
+                                          <>
+                                            <Icons.metamask className="mr-2 size-4" />
+                                            Metamask
+                                          </>
+                                        )
+                                      }
+                                    </Clerk.Loading>
+                                  </Button>
+                                </SignInWithMetamaskButton>
+                              </div>
                             </div>
                           </CardContent>
                           <CardFooter>
