@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-anonymous-default-export
 export default [
-  {
+  /* {
     name: "Blog Title",
     desc: "An AI tool that generate blog title depends on yout blog information",
     category: "Blog",
@@ -19,6 +19,31 @@ export default [
         label: "Enter blog outline",
         field: "textarea",
         name: "outline",
+      },
+    ],
+  }, */
+  {
+    name: "Email Campaign Generator",
+    desc: "Create personalized and effective email campaigns to improve your email marketing performance.",
+    icon: "https://cdn-icons-png.flaticon.com/128/732/732200.png",
+    category: "Marketing",
+    slug: "email-campaign-generator",
+    aiPrompt:
+      "Based on the provided subject and content details, generate a persuasive email campaign in rich text editor format.",
+    form: [
+      {
+        label: "Email Subject",
+        field: "input",
+        name: "emailSubject",
+        required: true,
+        placeholder: "Enter the email subject",
+      },
+      {
+        label: "Email Content Details",
+        field: "textarea",
+        name: "emailContent",
+        required: true,
+        placeholder: "Provide the details for the email content",
       },
     ],
   },
@@ -44,7 +69,7 @@ export default [
       },
     ],
   },
-  {
+  /*  {
     name: "Blog Topic Ideas",
     desc: "An AI tool that serves as your personal blog post title writer, generating catchy and viral-worthy titles in your chosen language.",
     category: "Blog",
@@ -60,7 +85,7 @@ export default [
         required: true,
       },
     ],
-  },
+  }, */
   {
     name: "Youtube SEO Title",
     desc: "An AI tool that serves as your personal blog post title writer, generating catchy and viral-worthy titles in your chosen language.",
@@ -164,7 +189,7 @@ export default [
       },
     ],
   },
-  {
+  /* {
     name: "Add Emojis to Text",
     desc: "An AI tool that serves as your personal blog post title writer, generating catchy and viral-worthy titles in your chosen language.",
     icon: "https://cdn-icons-png.flaticon.com/128/2584/2584606.png",
@@ -180,7 +205,7 @@ export default [
         required: true,
       },
     ],
-  },
+  }, */
   {
     name: "Instagram Post Generator",
     desc: "An AI tool that serves as your personal blog post title writer, generating catchy and viral-worthy titles in your chosen language.",
@@ -199,7 +224,7 @@ export default [
       },
     ],
   },
-  {
+  /*   {
     name: "Instagram Hash Tag Generator",
     desc: "An AI tool that serves as your personal blog post title writer, generating catchy and viral-worthy titles in your chosen language.",
     icon: "https://cdn-icons-png.flaticon.com/128/7045/7045432.png",
@@ -216,7 +241,7 @@ export default [
         required: true,
       },
     ],
-  },
+  }, */
   {
     name: "Instagram Post/Reel Idea",
     desc: "An AI tool that generate New and trending instagram idea depends on your niche",
@@ -333,25 +358,26 @@ export default [
   },
   {
     name: "Product Description",
-    desc: "This is your AI-powered SEO expert, creating captivating and keyword-rich e-commerce product descriptions to boost your online sales.",
+    desc: "Your AI-powered SEO expert for creating captivating and keyword-rich e-commerce product descriptions to boost your online sales.",
     icon: "https://cdn-icons-png.flaticon.com/128/679/679922.png",
     category: "Marketing",
-
     slug: "product-description",
     aiPrompt:
-      "Depends on user productName and description generate small description for product for e-commer business give output  in rich text editor format  ",
+      "Based on the provided product name and details, generate a concise and compelling product description for e-commerce purposes in rich text editor format.",
     form: [
       {
         label: "Product Name",
         field: "input",
         name: "productName",
         required: true,
+        placeholder: "Enter the product name",
       },
       {
         label: "Product Details",
         field: "textarea",
         name: "outline",
         required: true,
+        placeholder: "Enter the product details",
       },
     ],
   },

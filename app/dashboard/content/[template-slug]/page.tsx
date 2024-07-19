@@ -1,11 +1,22 @@
 import React from "react";
-import { Form } from "../../_components/form";
 import { Output } from "../../_components/output";
+import templates from "@/app/(data)/templates";
+import { FormComponent } from "../../_components/form";
 
-const CreateNewContent = () => {
+interface Tprops {
+  params: {
+    "template-slug": string;
+  };
+}
+
+const CreateNewContent: React.FC<Tprops> = ({ params }) => {
+  const selectedTemplate = templates.find(
+    (item) => item.slug === params["template-slug"]
+  );
+
   return (
     <div className="flex flex-col justify-center items-center rounded-sm">
-      <Form />
+      <FormComponent selectedTemplate={selectedTemplate} />
       <Output />
     </div>
   );
