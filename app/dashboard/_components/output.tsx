@@ -1,7 +1,8 @@
 "use client";
 import React from "react";
 import dynamic from "next/dynamic";
-import "react-quill/dist/quill.snow.css"; // Import Quill styles
+import "react-quill/dist/quill.snow.css";
+import "quill/dist/quill.snow.css";
 import { quillFormats, quillModules } from "@/config";
 import { Button } from "@/components/ui/button";
 import { Icons } from "@/components/ui/Icons";
@@ -39,7 +40,7 @@ export const Output: React.FC<OutputProps> = ({ dataOutput }) => {
           className="absolute bottom-0 right-0 m-4 md:m-12 z-50"
           variant={"default"}
         >
-          <Icons.copy className="" /> Copy
+          <Icons.copy /> Copy
         </Button>
       ) : null}
       <div className=" max-h-[18rem] md:h-[16rem] h-[14rem]">
@@ -47,6 +48,7 @@ export const Output: React.FC<OutputProps> = ({ dataOutput }) => {
           value={dataOutput}
           modules={quillModules}
           formats={quillFormats}
+          theme="snow"
           className="w-full h-[70%] z-40"
         />
       </div>

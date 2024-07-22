@@ -14,7 +14,7 @@ interface Tprops {
 
 const CreateNewContent: React.FC<Tprops> = ({ params }) => {
   const [loading, setLoading] = useState(false);
-  const [dataOutput, setDataOutput] = useState("");
+  const [dataOutput, setDataOutput] = useState<any>(null);
 
   const selectedTemplate = templates.find(
     (item) => item.slug === params["template-slug"]
@@ -41,7 +41,7 @@ const CreateNewContent: React.FC<Tprops> = ({ params }) => {
       });
     } catch (error) {
       setLoading(false);
-      setDataOutput("");
+      setDataOutput(null);
       console.error("Error generating AI content:", error);
     }
   };
