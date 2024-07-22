@@ -20,22 +20,17 @@ export const FormComponent: React.FC<Tprops> = ({ selectedTemplate }) => {
   }
   return (
     <div className="max-w-6xl w-full pt-10">
-      <Card
-        className="w-full bg-gradient-to-r
-    from-[#272828]
-    via-[#444444]
-    to-[#000000] background-animate hover:border-gray-700 border	"
-      >
+      <Card className="w-full border">
         <CardHeader>
           <div className="w-full">
             <div className="flex flex-col">
-              <CardTitle className=" text-white">
+              <CardTitle className=" text-primary">
                 {selectedTemplate.name}
-                <Badge className="px-3 mx-3 mb-1">
+                <Badge className=" mx-3 md:px-3 md:mx-3 mb-1">
                   {selectedTemplate.category}
                 </Badge>
               </CardTitle>
-              <CardDescription className="text-gray-300 pt-2">
+              <CardDescription className="text-primary pt-2">
                 {selectedTemplate.desc}
               </CardDescription>
             </div>

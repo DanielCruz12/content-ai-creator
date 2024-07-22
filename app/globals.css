@@ -69,6 +69,11 @@
   }
 }
 
+.toastui-editor-defaultUI-toolbar {
+  flex-wrap: wrap;
+}
+
+
   @layer base {
     * {
       @apply border-border;

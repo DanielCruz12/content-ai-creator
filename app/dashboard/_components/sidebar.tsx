@@ -13,7 +13,7 @@ export const Sidebar = () => {
     <aside className="h-full bg-[#f8f8f8] dark:bg-[#000] border-r border-[#d4d4d4] dark:border-[#000] p-5">
       <div className="mb-5">
         <div className="text-2xl font-bold text-black dark:text-white">
-          DanDev
+          <Link href={"/"}>DanDev</Link>
         </div>
       </div>
       <nav>

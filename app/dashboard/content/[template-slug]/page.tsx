@@ -15,7 +15,7 @@ const CreateNewContent: React.FC<Tprops> = ({ params }) => {
   );
 
   return (
-    <div className="flex flex-col justify-center items-center rounded-sm">
+    <div className="flex flex-col overflow-hidden justify-center items-center w-full  rounded-sm">
       <FormComponent selectedTemplate={selectedTemplate} />
       <Output />
     </div>
