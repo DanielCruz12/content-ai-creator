@@ -4,7 +4,8 @@ import { cn } from "@/lib/utils";
 import { ThemeProvider } from "../components/theme-provider";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
-import NextTopLoader from 'nextjs-toploader';
+import NextTopLoader from "nextjs-toploader";
+import { Toaster } from "react-hot-toast";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -40,8 +41,9 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-             <NextTopLoader />
+            <NextTopLoader />
             {children}
+            <Toaster />
           </ThemeProvider>
         </body>
       </html>

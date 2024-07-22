@@ -10,11 +10,20 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Formik, Form, Field } from "formik";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { MagicWandIcon } from "@radix-ui/react-icons";
+import { Loader } from "lucide-react";
 interface Tprops {
   selectedTemplate: any;
+  generateAIContent: any;
+  loading: boolean;
 }
 
-export const FormComponent: React.FC<Tprops> = ({ selectedTemplate }) => {
+export const FormComponent: React.FC<Tprops> = ({
+  selectedTemplate,
+  generateAIContent,
+  loading,
+}) => {
   if (!selectedTemplate) {
     return <div>Template not found</div>;
   }
@@ -36,26 +45,39 @@ export const FormComponent: React.FC<Tprops> = ({ selectedTemplate }) => {
             </div>
             <div className="flex py-3">
               <Formik
-                initialValues={{ value: "" }}
-                onSubmit={() => {}}
+                initialValues={selectedTemplate.form.reduce(
+                  (acc: any, field: any) => {
+                    acc[field.name] = "";
+                    return acc;
+                  },
+                  {}
+                )}
+                onSubmit={generateAIContent}
                 className="w-full"
               >
                 {({ setFieldValue }) => (
-                  <Form className="flex w-full flex-col md:flex-row gap-4">
+                  <Form className="flex w-full flex-col md:flex-col gap-4">
                     {selectedTemplate.form.map((field: any) => (
                       <Field
                         key={field.name}
                         name={field.name}
                         onChange={(e: any) => {
-                          /* setFieldValue(field.name, e.target.value); */
-                          console.log(e, setFieldValue);
+                          setFieldValue(field.name, e.target.value);
                         }}
-                        type={field.type}
+                        type={field.field}
                         placeholder={field.label}
-                        as={field.type === "textarea" ? Textarea : Input}
+                        as={field.field === "textarea" ? Textarea : Input}
                         className="mb-2"
                       />
                     ))}
+                    <Button
+                      disabled={loading}
+                      className="w-full md:w-28"
+                      type="submit"
+                    >
+                      {loading && <Loader />}
+                      Generate <MagicWandIcon />
+                    </Button>
                   </Form>
                 )}
               </Formik>
