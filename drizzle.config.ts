@@ -1,18 +1,17 @@
 import * as dotenv from "dotenv";
+import { defineConfig } from 'drizzle-kit';
 dotenv.config({ path: ".env.local" });
+
+console.log(process.env.DATABASE_URL); // Add this line
 
 if (!process.env.DATABASE_URL) {
     console.log('🔴 Cannot find database url');
 }
-
-// eslint-disable-next-line import/no-anonymous-default-export
-export default {
+export default defineConfig({
     schema: './lib/supabase/schema.ts',
     out: './migrations',
-    driver: 'pg',
+    dialect: 'postgresql',
     dbCredentials: {
-        connectionString: process.env.DATABASE_URL || '',
-    },
-};
-
-
+        url: process.env.DATABASE_URL as string,
+    }
+});

@@ -3,10 +3,10 @@ import React from "react";
 import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
 import "quill/dist/quill.snow.css";
-import { quillFormats, quillModules } from "@/config";
 import { Button } from "@/components/ui/button";
 import { Icons } from "@/components/ui/Icons";
 import toast from "react-hot-toast";
+import { quillFormats, quillModules } from "@/utils/quill";
 
 const QuillEditor = dynamic(() => import("react-quill"), { ssr: false });
 

@@ -6,8 +6,8 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 import NextTopLoader from "nextjs-toploader";
 import { Toaster } from "react-hot-toast";
-import db from "@/lib/supabase/db";
-db
+import { db } from "@/lib/supabase/db";
+console.log(db)
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
