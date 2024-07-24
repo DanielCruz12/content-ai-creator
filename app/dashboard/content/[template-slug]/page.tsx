@@ -1,10 +1,11 @@
 "use client";
 import React, { useState } from "react";
-import { Output } from "../../_components/output";
-import templates from "@/app/(data)/templates";
+/* import { Output } from "../../_components/output";
+ */ import templates from "@/app/(data)/templates";
 import { FormComponent } from "../../_components/form";
 import { chatSession } from "@/utils/aiModel";
 import toast from "react-hot-toast";
+import DocumentationContent from "../../_components/documentation-content";
 
 interface Tprops {
   params: {
@@ -32,7 +33,6 @@ const CreateNewContent: React.FC<Tprops> = ({ params }) => {
     try {
       setLoading(false);
       const result = await chatSession.sendMessage(finalPrompt);
-      console.log(result.response.text());
       setDataOutput(result.response.text());
 
       toast.success("Generated successfully.", {
@@ -53,7 +53,8 @@ const CreateNewContent: React.FC<Tprops> = ({ params }) => {
         generateAIContent={generateAIContent}
         loading={loading}
       />
-      <Output dataOutput={dataOutput} />
+      <DocumentationContent dataOutput={dataOutput} />
+      {/*  <Output dataOutput={dataOutput} /> */}
     </div>
   );
 };
