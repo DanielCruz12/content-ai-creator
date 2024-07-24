@@ -9,6 +9,16 @@ interface TemplateListProps {
 }
 
 export const TemplateList: React.FC<TemplateListProps> = ({ templates }) => {
+  /*  useEffect(() => {
+    const fetchData = async () => {
+      const forms = await getAiForms();
+      console.log(forms)
+    };
+
+    fetchData();
+  }, []);
+ */
+
   const [inputValueSearch, setInputValueSearch] = React.useState("");
   const [templateList, setTemplateList] = React.useState(templates);
 
