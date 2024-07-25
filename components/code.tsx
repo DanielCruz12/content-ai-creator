@@ -29,11 +29,12 @@ const Code: FC<CodeProps> = ({
           i++;
           if (i > code.length) {
             clearInterval(intervalId);
+           
           }
-        }, 15);
+        }, 10);
 
         return () => clearInterval(intervalId);
-      }, animationDelay || 150);
+      }, animationDelay || 100);
     }
   }, [code, show, animated, animationDelay]);
 

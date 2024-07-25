@@ -6,6 +6,7 @@ import { FormComponent } from "../../_components/form";
 import { chatSession } from "@/utils/aiModel";
 import toast from "react-hot-toast";
 import DocumentationContent from "../../_components/documentation-content";
+import { BarLoader } from "react-spinners";
 
 interface Tprops {
   params: {
@@ -23,7 +24,6 @@ const CreateNewContent: React.FC<Tprops> = ({ params }) => {
 
   const generateAIContent = async (values: any) => {
     if (!selectedTemplate) return;
-    setLoading(true);
 
     const formValues = Object.entries(values)
       .map(([key, value]) => `${key}: ${value}`)
@@ -31,7 +31,7 @@ const CreateNewContent: React.FC<Tprops> = ({ params }) => {
 
     const finalPrompt = `${JSON.stringify(formValues)} ${selectedTemplate.aiPrompt}`;
     try {
-      setLoading(false);
+      setLoading(true);
       const result = await chatSession.sendMessage(finalPrompt);
       setDataOutput(result.response.text());
 
@@ -39,15 +39,22 @@ const CreateNewContent: React.FC<Tprops> = ({ params }) => {
         position: "bottom-center",
         style: { backgroundColor: "#e7e6e6" },
       });
-    } catch (error) {
       setLoading(false);
+    } catch (error) {
       setDataOutput(null);
       console.error("Error generating AI content:", error);
+      setLoading(false);
     }
+    setLoading(false);
   };
 
   return (
     <div className="flex flex-col overflow-hidden justify-center items-center w-full  rounded-sm">
+      {loading === true && (
+        <div className="absolute inset-0 z-50 flex justify-center items-center bg-[#181818] bg-opacity-75">
+          <BarLoader color="#322d3d" width={300} />
+        </div>
+      )}
       <FormComponent
         selectedTemplate={selectedTemplate}
         generateAIContent={generateAIContent}
