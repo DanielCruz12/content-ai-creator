@@ -1,10 +1,17 @@
+// lib/server/db.ts
 import { drizzle } from "drizzle-orm/postgres-js";
+import { migrate } from "drizzle-orm/postgres-js/migrator";
 import postgres from "postgres";
-import { config } from "dotenv";
 
-config({ path: ".env" });
+// for migrations
+const migrationClient = postgres(process.env.DATABASE_URL as string, {
+  max: 1,
+});
+const migrationDb = drizzle(migrationClient);
+migrate(migrationDb, { migrationsFolder: "./migrations" }).catch(console.error);
 
-const queryString = process.env.DATABASE_URL as string;
-export const connection = postgres(queryString);
+// for query purposes
+const queryClient = postgres(process.env.DATABASE_URL as string);
+const db = drizzle(queryClient);
 
-export const db = drizzle(connection);
+export { db };
