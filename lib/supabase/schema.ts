@@ -8,6 +8,7 @@ export const aitemplates = pgTable('Aitemplates', {
     category: text('category').notNull(),
     slug: text('slug').notNull(),
     aiPrompt: text('aiPrompt').notNull(),
+    test: text('test').notNull(),
 })
 
 export const formFields = pgTable("formFields", {
@@ -18,4 +19,5 @@ export const formFields = pgTable("formFields", {
     name: text("name").notNull(),
     required: boolean("required").notNull(),
     placeholder: text("placeholder"),
+    input: text("input"),
 });

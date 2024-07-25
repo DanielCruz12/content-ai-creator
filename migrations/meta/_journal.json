@@ -8,6 +8,13 @@
       "when": 1721833877741,
       "tag": "0000_tense_fat_cobra",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1721872392466,
+      "tag": "0001_first_energizer",
+      "breakpoints": true
     }
   ]
 }
