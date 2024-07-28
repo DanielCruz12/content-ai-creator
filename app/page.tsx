@@ -26,7 +26,7 @@ export default function Home() {
             className="inline-flex items-center gap-x-2 border text-sm p-1 ps-3 rounded-full transition"
             href="#"
           >
-            PRO release - Join to waitlist
+            Beta version
             <span className="py-1.5 px-2.5 inline-flex justify-center items-center gap-x-2 rounded-full bg-muted-foreground/15 font-semibold text-sm">
               <svg
                 className="flex-shrink-0 w-4 h-4"
@@ -49,14 +49,15 @@ export default function Home() {
         {/* Title */}
         <div className="mt-5 max-w-2xl text-center mx-auto">
           <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
-            Let&apos;s Build Together
+            Let&apos;s build and share Together
           </h1>
         </div>
         {/* End Title */}
         <div className="mt-5 max-w-3xl text-center mx-auto">
           <p className="text-xl text-muted-foreground">
-            Over 10+ fully responsive, UI blocks you can drop into your Shadcn
-            UI projects and customize to your heart&apos;s content.
+            DanDevPrompt is a platform where you can find prompts of the
+            community that you can Share, comment and posts with others sharing
+            your ideas and projects.
           </p>
         </div>
         {/* Buttons */}
@@ -79,10 +80,8 @@ export default function Home() {
         </div>
         {/* End Buttons */}
         <div className="mt-5 flex justify-center items-center gap-x-1 sm:gap-x-3">
-          <span className="text-sm text-muted-foreground">
-            Package Manager:
-          </span>
-          <span className="text-sm font-bold">npm </span>
+          <span className="text-sm text-muted-foreground">Build prompts:</span>
+          <span className="text-sm font-bold">I want to... </span>
           <svg
             className="h-5 w-5 text-muted-foreground"
             width={16}
@@ -98,7 +97,7 @@ export default function Home() {
             className="inline-flex items-center gap-x-1 text-sm decoration-2 hover:underline font-medium"
             href="#"
           >
-            Installation Guide
+            I desire to...
             <ChevronRightIcon className="flex-shrink-0 w-4 h-4" />
           </a>
         </div>

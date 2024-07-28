@@ -1,10 +1,12 @@
 import React from "react";
-import { HomeIcon, GearIcon, InfoCircledIcon } from "@radix-ui/react-icons";
+import { HomeIcon, GearIcon, InfoCircledIcon, PersonIcon, ClockIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 
 const sidebarItems = [
   { label: "Home", icon: HomeIcon, href: "/" },
   { label: "Settings", icon: GearIcon, href: "/" },
+  { label: "Community", icon: PersonIcon, href: "/" },
+  { label: "History", icon: ClockIcon, href: "/" },
   { label: "About", icon: InfoCircledIcon, href: "/" },
 ];
 
