@@ -1,4 +1,5 @@
 "use client";
+
 import Cto from "./_components/cto";
 import { TemplateList } from "./_components/template-list";
 import FormService from "@/services/formServices";
@@ -6,6 +7,7 @@ import { useEffect, useState } from "react";
 
 const Dashboard = () => {
   const [data, setData] = useState<any>([]);
+
   const getForms = async () => {
     try {
       const res = await FormService.getFormsAi();

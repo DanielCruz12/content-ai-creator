@@ -35,6 +35,8 @@ const CreateNewContent: React.FC<Tprops> = ({ params }) => {
       const result = await chatSession.sendMessage(finalPrompt);
       setDataOutput(result.response.text());
 
+      //! guardar aqui la info del response(userId, response(text), values(fields))
+
       toast.success("Generated successfully.", {
         position: "bottom-center",
         style: { backgroundColor: "#e7e6e6" },

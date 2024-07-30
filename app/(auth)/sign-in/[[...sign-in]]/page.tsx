@@ -210,11 +210,3 @@ export default function SignInPage() {
     </>
   );
 }
-
-/* import React from "react";
-
-const Sign = () => {
-  return <div>Sign</div>;
-};
-
-export default Sign; */
