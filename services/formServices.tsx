@@ -1,7 +1,7 @@
 import HttpClient from "@/utils/httpClient";
 
 const getFormsAi = async () => {
-  return HttpClient(`/api/v1/users`).then((res) => {
+  return HttpClient(`/api/v1/forms`).then((res) => {
     return res.data;
   });
 };
