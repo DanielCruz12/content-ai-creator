@@ -8,7 +8,6 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
 } from "@/components/ui/card";
 import { Icons } from "@/components/ui/Icons";
@@ -37,7 +36,7 @@ export default function SignInPage() {
         <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
           <div className="absolute inset-0 bg-zinc-900" />
           <div className="relative z-20 flex items-center text-lg font-medium">
-            DanDev
+            <Link href={"/"}> DanDev</Link>
           </div>
           <div className="relative z-20 mt-auto">
             <blockquote className="space-y-2">
@@ -73,7 +72,7 @@ export default function SignInPage() {
 
                           <CardContent className="grid gap-y-4">
                             <div className="grid grid-cols-1 gap-4">
-                              <div className="grid grid-cols-3 gap-3">
+                              <div className="grid grid-cols-2 gap-3">
                                 <Clerk.Connection name="google" asChild>
                                   <Button
                                     size="sm"
@@ -117,34 +116,35 @@ export default function SignInPage() {
                                     </Clerk.Loading>
                                   </Button>
                                 </Clerk.Connection>
-                                <Clerk.Connection name="notion" asChild>
-                                  <Button
-                                    size="sm"
-                                    variant="outline"
-                                    type="button"
-                                    disabled={isGlobalLoading}
-                                  >
-                                    <Clerk.Loading scope="provider:notion">
-                                      {(isLoading) =>
-                                        isLoading ? (
-                                          <Icons.spinner className="size-4 animate-spin" />
-                                        ) : (
-                                          <>
-                                            <Icons.notion className="mr-2 size-4" />
-                                            Notion
-                                          </>
-                                        )
-                                      }
-                                    </Clerk.Loading>
-                                  </Button>
-                                </Clerk.Connection>
                               </div>
 
                               <div className="relative flex justify-center text-xs uppercase">
-                                <span className="bg-background px-2 text-muted-foreground">
+                                <span className="bg-background px-2 pt-3 text-muted-foreground">
                                   Or continue with
                                 </span>
                               </div>
+
+                              <Clerk.Connection name="notion" asChild>
+                                <Button
+                                  size="sm"
+                                  variant="outline"
+                                  type="button"
+                                  disabled={isGlobalLoading}
+                                >
+                                  <Clerk.Loading scope="provider:notion">
+                                    {(isLoading) =>
+                                      isLoading ? (
+                                        <Icons.spinner className="size-4 animate-spin" />
+                                      ) : (
+                                        <>
+                                          <Icons.notion className="mr-2 size-4" />
+                                          Notion
+                                        </>
+                                      )
+                                    }
+                                  </Clerk.Loading>
+                                </Button>
+                              </Clerk.Connection>
 
                               <div className="grid grid-cols-1">
                                 <SignInWithMetamaskButton mode="modal">
@@ -171,7 +171,7 @@ export default function SignInPage() {
                               </div>
                             </div>
                           </CardContent>
-                          <CardFooter>
+                          {/*  <CardFooter>
                             <div className="grid w-full gap-y-4">
                               <Button variant="link" size="sm" asChild>
                                 <Link href="/sign-up">
@@ -179,7 +179,7 @@ export default function SignInPage() {
                                 </Link>
                               </Button>
                             </div>
-                          </CardFooter>
+                          </CardFooter> */}
                         </Card>
                       </SignIn.Step>
                     </>

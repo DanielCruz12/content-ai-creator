@@ -29,7 +29,6 @@ const Code: FC<CodeProps> = ({
           i++;
           if (i > code.length) {
             clearInterval(intervalId);
-           
           }
         }, 10);
 
@@ -42,34 +41,33 @@ const Code: FC<CodeProps> = ({
   const lines = text.split(/\r\n|\r|\n/).length;
 
   return (
-    <Highlight {...defaultProps} code={text} language={language}>
-      {({ className, tokens, getLineProps, getTokenProps }: any) => (
-        <pre
-          className={
-            className +
-            "transition-all w-fit bg-transparent duration-100 py-0 no-scrollbar"
-          }
-          style={{
-            maxHeight: show ? lines * 24 : 0,
-            opacity: show ? 1 : 0,
-          }}
-        >
-          {tokens.map((line: any, i: any) => {
-            // eslint-disable-next-line no-unused-vars
-            const { key, ...rest } = getLineProps({ line, key: i });
-            return (
-              <div key={`line-${i}`} style={{ position: "relative" }} {...rest}>
-                {line.map((token: any, index: any) => {
-                  // eslint-disable-next-line no-unused-vars
-                  const { key, ...props } = getTokenProps({ token, i });
-                  return <span key={index} {...props} />;
-                })}
-              </div>
-            );
-          })}
-        </pre>
-      )}
-    </Highlight>
+    <div className=" overflow-auto">
+      <Highlight {...defaultProps} code={text} language={language}>
+        {({ className, tokens, getLineProps, getTokenProps }: any) => (
+          <pre
+            className={className + "transition-all bg-transparent duration-100"}
+            style={{
+              maxHeight: show ? lines * 24 : 0,
+              opacity: show ? 1 : 0,
+            }}
+          >
+            {tokens.map((line: any, i: any) => {
+              // eslint-disable-next-line no-unused-vars
+              const { key, ...rest } = getLineProps({ line, key: i });
+              return (
+                <div key={`line-${i}`} {...rest}>
+                  {line.map((token: any, index: any) => {
+                    // eslint-disable-next-line no-unused-vars
+                    const { key, ...props } = getTokenProps({ token, i });
+                    return <span key={index} {...props} />;
+                  })}
+                </div>
+              );
+            })}
+          </pre>
+        )}
+      </Highlight>
+    </div>
   );
 };
 

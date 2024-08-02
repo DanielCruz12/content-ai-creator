@@ -51,19 +51,28 @@ const CreateNewContent: React.FC<Tprops> = ({ params }) => {
   };
 
   return (
-    <div className="flex flex-col overflow-hidden justify-center items-center w-full  rounded-sm">
-      {loading === true && (
-        <div className="absolute inset-0 z-50 flex justify-center items-center bg-[#181818] bg-opacity-75">
-          <BarLoader color="#322d3d" width={300} />
+    <div className=" flex flex-col items-center w-full p-4 max-w-5xl mx-auto">
+      {loading && (
+        <div className="absolute inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-75">
+          <BarLoader color="#ffffff" width={300} />
         </div>
       )}
-      <FormComponent
-        selectedTemplate={selectedTemplate}
-        generateAIContent={generateAIContent}
-        loading={loading}
-      />
-      <DocumentationContent dataOutput={dataOutput} />
-      {/*  <Output dataOutput={dataOutput} /> */}
+      <div className="w-full space-y-4 flex flex-col max-w-5xl">
+        <div>
+          <FormComponent
+            selectedTemplate={selectedTemplate}
+            generateAIContent={generateAIContent}
+            loading={loading}
+          />
+        </div>
+        <div className=" w-full max-h-[60vh] bg-white dark:bg-gray-900 rounded-md shadow-md p-4">
+          {dataOutput && (
+            <div className="text-justify text-wrap">
+              <DocumentationContent dataOutput={dataOutput} />
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 };
