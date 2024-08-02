@@ -6,8 +6,16 @@ const getFormsAi = async () => {
   });
 };
 
+const saveResponseDataAi = async (dataToSend: any) => {
+  console.log(dataToSend);
+  return HttpClient(`/api/v1/formResponse`, dataToSend, "post").then((res) => {
+    return res;
+  });
+};
+
 const FormService = {
   getFormsAi,
+  saveResponseDataAi,
 };
 
 export default FormService;

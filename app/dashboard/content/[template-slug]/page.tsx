@@ -7,6 +7,8 @@ import { chatSession } from "@/utils/aiModel";
 import toast from "react-hot-toast";
 import DocumentationContent from "../../_components/documentation-content";
 import { BarLoader } from "react-spinners";
+import { useUser } from "@clerk/nextjs";
+import FormService from "@/services/formServices";
 
 interface Tprops {
   params: {
@@ -17,7 +19,7 @@ interface Tprops {
 const CreateNewContent: React.FC<Tprops> = ({ params }) => {
   const [loading, setLoading] = useState(false);
   const [dataOutput, setDataOutput] = useState<any>(null);
-
+  const user = useUser();
   const selectedTemplate = templates.find(
     (item) => item.slug === params["template-slug"]
   );
@@ -30,17 +32,26 @@ const CreateNewContent: React.FC<Tprops> = ({ params }) => {
       .join(", ");
 
     const finalPrompt = `${JSON.stringify(formValues)} ${selectedTemplate.aiPrompt}`;
+
     try {
       setLoading(true);
       const result = await chatSession.sendMessage(finalPrompt);
       setDataOutput(result.response.text());
 
-      //! guardar aqui la info del response(userId, response(text), values(fields))
-
+      
       toast.success("Generated successfully.", {
         position: "bottom-center",
         style: { backgroundColor: "#e7e6e6" },
       });
+      const dataToSend = {
+        userId: user.user?.id,
+        responseData: result.response.text(),
+        share_status: false,
+        formId: "19f9573f-227f-46aa-9e4d-f4f70b337bbd",
+        form_fields_data: formValues,
+      };
+      //! guardar aqui la info del response(userId, response(text), values(fields))
+      await FormService.saveResponseDataAi(dataToSend);
       setLoading(false);
     } catch (error) {
       setDataOutput(null);
@@ -66,10 +77,14 @@ const CreateNewContent: React.FC<Tprops> = ({ params }) => {
           />
         </div>
         <div className=" w-full max-h-[60vh] bg-white dark:bg-gray-900 rounded-md shadow-md p-4">
-          {dataOutput && (
+          {dataOutput ? (
             <div className="text-justify text-wrap">
               <DocumentationContent dataOutput={dataOutput} />
             </div>
+          ) : (
+            <small className="text-[#777777]">
+              Your generated content will appear here...
+            </small>
           )}
         </div>
       </div>
