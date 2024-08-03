@@ -19,6 +19,7 @@ type Tool = {
   category: string;
   slug: string;
   aiPrompt: string;
+  id: string;
   icon: string;
 };
 
@@ -29,7 +30,7 @@ type CardDemoProps = {
 
 export function CardDemo({ className, tool, ...props }: CardDemoProps) {
   return (
-    <Link href={`/dashboard/content/${tool.slug}`}>
+    <Link href={`/dashboard/content/${tool.slug}/${tool.id}`}>
       <Card
         className={cn(
           "w-[310px] hover:cursor-pointer border-[1px] dark:border-[#2c2c2c] border-[#6d6d6d] md:w-auto max-w-[370px]",

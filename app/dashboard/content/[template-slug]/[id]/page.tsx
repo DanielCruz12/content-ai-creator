@@ -2,10 +2,10 @@
 import React, { useState } from "react";
 /* import { Output } from "../../_components/output";
  */ import templates from "@/app/(data)/templates";
-import { FormComponent } from "../../_components/form";
+import { FormComponent } from "../../../_components/form";
 import { chatSession } from "@/utils/aiModel";
 import toast from "react-hot-toast";
-import DocumentationContent from "../../_components/documentation-content";
+import DocumentationContent from "../../../_components/documentation-content";
 import { BarLoader } from "react-spinners";
 import { useUser } from "@clerk/nextjs";
 import FormService from "@/services/formServices";
@@ -13,6 +13,7 @@ import FormService from "@/services/formServices";
 interface Tprops {
   params: {
     "template-slug": string;
+    id: string;
   };
 }
 
@@ -34,11 +35,11 @@ const CreateNewContent: React.FC<Tprops> = ({ params }) => {
     const finalPrompt = `${JSON.stringify(formValues)} ${selectedTemplate.aiPrompt}`;
 
     try {
+      if (!params.id) return;
       setLoading(true);
       const result = await chatSession.sendMessage(finalPrompt);
       setDataOutput(result.response.text());
 
-      
       toast.success("Generated successfully.", {
         position: "bottom-center",
         style: { backgroundColor: "#e7e6e6" },
@@ -47,10 +48,9 @@ const CreateNewContent: React.FC<Tprops> = ({ params }) => {
         userId: user.user?.id,
         responseData: result.response.text(),
         share_status: false,
-        formId: "19f9573f-227f-46aa-9e4d-f4f70b337bbd",
+        formId: params.id,
         form_fields_data: formValues,
       };
-      //! guardar aqui la info del response(userId, response(text), values(fields))
       await FormService.saveResponseDataAi(dataToSend);
       setLoading(false);
     } catch (error) {
