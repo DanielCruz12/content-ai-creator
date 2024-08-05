@@ -291,7 +291,7 @@ export default [
       {
         label: "Enter description of code you want along with Programming Lang",
         field: "textarea",
-        name: "codeDesscripton",
+        name: "codeDescription",
         required: true,
       },
     ],
@@ -309,7 +309,7 @@ export default [
       {
         label: "Enter code which you want to understand",
         field: "textarea",
-        name: "codeDesscripton",
+        name: "codeDescription",
         required: true,
       },
     ],

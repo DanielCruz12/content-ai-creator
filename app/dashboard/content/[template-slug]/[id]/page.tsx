@@ -31,6 +31,9 @@ const CreateNewContent: React.FC<Tprops> = ({ params }) => {
       .map(([key, value]) => `${key}: ${value}`)
       .join(", ");
 
+    const formInput = Object.values(values).map((value) => value);
+    const firstValue = formInput[0];
+
     const finalPrompt = `${JSON.stringify(formValues)} ${selectedTemplate.aiPrompt}`;
 
     try {
@@ -48,7 +51,7 @@ const CreateNewContent: React.FC<Tprops> = ({ params }) => {
         responseData: result.response.text(),
         share_status: false,
         formId: params.id,
-        form_fields_data: formValues,
+        form_fields_data: firstValue,
       };
       await FormService.saveResponseDataAi(dataToSend);
       setLoading(false);
