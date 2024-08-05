@@ -6,7 +6,7 @@ const sidebarItems = [
   { label: "Home", icon: HomeIcon, href: "/" },
   { label: "Settings", icon: GearIcon, href: "/" },
   { label: "Community", icon: PersonIcon, href: "/" },
-  { label: "History", icon: ClockIcon, href: "/" },
+  { label: "History", icon: ClockIcon, href: "/dashboard/history" },
   { label: "About", icon: InfoCircledIcon, href: "/" },
 ];
 

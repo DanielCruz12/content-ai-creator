@@ -5,7 +5,6 @@ import React, { useState } from "react";
 import { FormComponent } from "../../../_components/form";
 import { chatSession } from "@/utils/aiModel";
 import toast from "react-hot-toast";
-import DocumentationContent from "../../../_components/documentation-content";
 import { BarLoader } from "react-spinners";
 import { useUser } from "@clerk/nextjs";
 import FormService from "@/services/formServices";
@@ -45,7 +44,7 @@ const CreateNewContent: React.FC<Tprops> = ({ params }) => {
         style: { backgroundColor: "#e7e6e6" },
       });
       const dataToSend = {
-        userId: user.user?.id,
+        userId: user?.user?.primaryEmailAddress?.id ?? "",
         responseData: result.response.text(),
         share_status: false,
         formId: params.id,
@@ -62,24 +61,27 @@ const CreateNewContent: React.FC<Tprops> = ({ params }) => {
   };
 
   return (
-    <div className=" flex flex-col items-center w-full p-4 max-w-5xl mx-auto">
+    <div className=" flex flex-col items-center w-full pb-10">
       {loading && (
-        <div className="absolute inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-75">
+        <div className="absolute h-screen inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-75">
           <BarLoader color="#ffffff" width={300} />
         </div>
       )}
-      <div className="w-full space-y-4 flex flex-col max-w-5xl">
-        <div>
-          <FormComponent
-            selectedTemplate={selectedTemplate}
-            generateAIContent={generateAIContent}
-            loading={loading}
-          />
-        </div>
-        <div className=" w-full max-h-[60vh] bg-white dark:bg-gray-900 rounded-md shadow-md p-4">
+      <div className=" w-full pt-10 max-w-6xl">
+        <FormComponent
+          selectedTemplate={selectedTemplate}
+          generateAIContent={generateAIContent}
+          loading={loading}
+        />
+      </div>
+      <div className=" w-full pt-10 max-w-6xl">
+        <div className="w-full bg-white dark:bg-gray-900 rounded-md shadow-md p-4">
           {dataOutput ? (
-            <div className="text-justify text-wrap">
-              <DocumentationContent dataOutput={dataOutput} />
+            <div
+              className="text-justify overflow-auto max-h-[25vh] max-w-full"
+              style={{ whiteSpace: "pre-wrap", wordWrap: "break-word" }}
+            >
+              {dataOutput}
             </div>
           ) : (
             <small className="text-[#777777]">

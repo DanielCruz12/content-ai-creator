@@ -9,7 +9,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="flex h-screen overflow-hidden dark:bg-[#030303]">
+    <div className="flex h-screen overflow-hidden ">
       <aside className="w-56 hidden md:block fixed inset-y-0 z-20">
         <Sidebar />
       </aside>

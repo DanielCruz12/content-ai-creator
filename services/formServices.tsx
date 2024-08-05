@@ -12,9 +12,16 @@ const saveResponseDataAi = async (dataToSend: any) => {
     return res;
   });
 };
+const getHistoryByUserAi = async (userId: any) => {
+  console.log(userId);
+  return HttpClient(`/api/v1/history/${userId}`, "get").then((res) => {
+    return res;
+  });
+};
 
 const FormService = {
   getFormsAi,
+  getHistoryByUserAi,
   saveResponseDataAi,
 };
 

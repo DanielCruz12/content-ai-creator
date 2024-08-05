@@ -24,7 +24,6 @@ export default function RootLayout({
         layout: {
           socialButtonsPlacement: "bottom",
           socialButtonsVariant: "iconButton",
-          termsPageUrl: "https://clerk.com/terms",
         },
       }}
     >

@@ -28,7 +28,7 @@ export const FormComponent: React.FC<Tprops> = ({
     return <div>Template not found</div>;
   }
   return (
-    <div className="max-w-6xl w-full pt-10">
+    <div className="">
       <Card className="w-full border">
         <CardHeader>
           <div className="w-full">
