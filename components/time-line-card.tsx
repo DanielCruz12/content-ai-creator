@@ -2,8 +2,8 @@
 "use client";
 import { FC, useState } from "react";
 import moment from "moment";
-import { Share1Icon } from "@radix-ui/react-icons";
 import { Button } from "./ui/button";
+import { Share2Icon } from "@radix-ui/react-icons";
 
 type TimeLineCardProps = {
   date: string;
@@ -17,7 +17,6 @@ const TimeLineCard: FC<TimeLineCardProps> = ({
   date,
   category,
   title,
-  svgIcon,
   slug,
   description,
 }) => {
@@ -28,9 +27,7 @@ const TimeLineCard: FC<TimeLineCardProps> = ({
   return (
     <ol className="relative border-s border-gray-200 dark:border-gray-700">
       <li className=" ms-6">
-        <span className="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -start-2 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
-          {svgIcon ? <img src={svgIcon} alt={description} /> : ""}
-        </span>
+        <span className="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -start-2 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900"></span>
         <h3 className="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white">
           {title}
           <span className="bg-blue-100 text-blue-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 ms-3">
@@ -57,7 +54,7 @@ const TimeLineCard: FC<TimeLineCardProps> = ({
         </div>
 
         <Button className="inline-flex my-3 items-center px-4 py-2 text-sm font-medium text-gray-900 bg-gray-300 border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-100 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700">
-          <Share1Icon />
+          <Share2Icon />
           <p className="px-2">Share</p>
         </Button>
       </li>
