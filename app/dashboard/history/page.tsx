@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import React, { useEffect, useState } from "react";
 import FormService from "@/services/formServices";
@@ -11,6 +10,7 @@ const History = () => {
   const [history, setHistory] = useState<any[]>([]);
 
   const getHistoryByUser = async () => {
+    if (!user) return;
     try {
       const res = await FormService.getHistoryByUserAi(userId);
       setHistory(res.data);
@@ -21,9 +21,10 @@ const History = () => {
 
   useEffect(() => {
     getHistoryByUser();
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userId]);
 
-  return <TimeLine history={history}/>;
+  return <TimeLine history={history} />;
 };
 
 export default History;
