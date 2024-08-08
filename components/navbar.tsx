@@ -14,36 +14,36 @@ import {
 
 const components: { title: string; href: string; description: string }[] = [
   {
-    title: "Alert Dialog",
-    href: "/docs/primitives/alert-dialog",
+    title: "Home",
+    href: "/",
     description:
-      "A modal dialog that interrupts the user with important content and expects a response.",
+      "The main landing page providing an overview and access to other sections.",
   },
   {
-    title: "Hover Card",
-    href: "/docs/primitives/hover-card",
+    title: "Dashboard",
+    href: "/dashboard",
     description:
-      "For sighted users to preview content available behind a link.",
+      "A central hub where users can manage and monitor their activities and data.",
   },
   {
-    title: "Progress",
-    href: "/docs/primitives/progress",
+    title: "History",
+    href: "/dashboard/history",
     description:
-      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
+      "A section that displays the user's past activities and progress over time.",
   },
   {
-    title: "Scroll-area",
-    href: "/docs/primitives/scroll-area",
-    description: "Visually or semantically separates content.",
+    title: "Community",
+    href: "/dashboard/community",
+    description:
+      "A place for users to interact, share information, and engage with the community.",
   },
- 
 ];
 
 export function Navigation() {
   return (
     <NavigationMenu>
       <NavigationMenuList>
-       {/*  <NavigationMenuItem>
+        {/*  <NavigationMenuItem>
           <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
@@ -60,10 +60,10 @@ export function Navigation() {
           </NavigationMenuContent>
         </NavigationMenuItem> */}
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
+          <NavigationMenuTrigger>Start here</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid gap-3 p-6 w-[300px] md:w-[500px] lg:w-[600px] lg:grid-cols-[.75fr_1fr]">
-            {components.map((component) => (
+              {components.map((component) => (
                 <ListItem
                   key={component.title}
                   title={component.title}
@@ -75,7 +75,6 @@ export function Navigation() {
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
-      
       </NavigationMenuList>
     </NavigationMenu>
   );

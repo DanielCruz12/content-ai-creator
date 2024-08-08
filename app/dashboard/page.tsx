@@ -1,6 +1,5 @@
 "use client";
 
-import Cto from "./_components/cto";
 import { TemplateList } from "./_components/template-list";
 import FormService from "@/services/formServices";
 import { useEffect, useState } from "react";
@@ -26,7 +25,7 @@ const Dashboard = () => {
       <div className="max-w-6xl w-full">
         <TemplateList templates={data} />
       </div>
-      <Cto />
+     {/*  <Cto /> */}
     </div>
   );
 };

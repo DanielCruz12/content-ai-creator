@@ -9,13 +9,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="flex h-screen overflow-hidden ">
-      <aside className="w-56 hidden md:block fixed inset-y-0 z-20">
+    <div className=" min-h-screen">
+      {/* Sidebar izquierdo */}
+      <aside className="fixed hidden lg:block top-0 left-0 w-[250px] h-screen p-4 z-20">
         <Sidebar />
       </aside>
-      <main className="flex-1 md:ml-52 px-5 md:px-0">
-        <header className="flex justify-between items-center py-3 bg-[#f8f8f8] dark:bg-[#000] top-0 w-full z-10  md:px-10">
-          <div className="flex items-center gap-5 ">
+
+      {/* Columna principal */}
+      <main className="flex-1 lg:ml-[300px] lg:mr-[300px] min-h-screen p-4">
+        {/* Header */}
+        <header className="py-3 px-5 rounded-lg flex justify-between items-center sticky top-0 z-10 bg-white/5 backdrop-blur-md border border-white/20 shadow-lg">
+          <div className="flex items-center gap-5">
             <Navigation />
             <ModeToggle />
           </div>
@@ -23,8 +27,15 @@ export default function RootLayout({
             <UserButton />
           </SignedIn>
         </header>
-        <div className="h-screen overflow-y-auto">{children}</div>
+
+        {/* Contenido principal */}
+        <div className="mt-4 flex-1 overflow-y-auto">{children}</div>
       </main>
+
+      {/* Sidebar derecho */}
+      <aside className="fixed hidden lg:block top-0 right-0 w-[270px] h-screen p-4 z-20">
+        <p>Aside content</p>
+      </aside>
     </div>
   );
 }
