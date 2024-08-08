@@ -62,17 +62,15 @@ export default function Home() {
         </div>
         {/* Buttons */}
         <div className="mt-8 gap-3 flex justify-center">
-          {session?.value ? (
-            <Link href={"/dashboard"}>
-              <Button size={"lg"}>Dashboard</Button>
-            </Link>
-          ) : (
-            <Button size={"lg"}>
+         
+            {session?.value ? (
+              <Link href={"/dashboard"}>Dashboard</Link>
+            ) : (
               <SignedOut>
                 <SignInButton />
               </SignedOut>
-            </Button>
-          )}
+            )}
+          
 
           <Button size={"lg"} variant={"outline"}>
             Learn more
