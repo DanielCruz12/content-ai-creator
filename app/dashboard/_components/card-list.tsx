@@ -39,21 +39,22 @@ export function CardDemo({ className, tool, ...props }: CardDemoProps) {
         {...props}
       >
         <CardHeader>
-          <CardTitle>{tool.name}</CardTitle>
+          <CardTitle>{tool.name} </CardTitle>
           <CardDescription className="text-primary">
-            {tool.desc}
+            {`${tool.desc.slice(0, 100)}...`}
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4">
           <div className=" flex items-center space-x-4 rounded-md border p-4">
-            <FocusIcon />
-            {/* <img className="w-7 h-7" src={tool.icon} alt={tool.desc} /> */}
+            {tool.icon ? (
+              <img className="w-7 h-7" src={tool.icon} alt={tool.desc} />
+            ) : (
+              <FocusIcon />
+            )}
+
             <div className="flex-1 space-y-1">
               <p className="text-sm font-medium leading-none">
                 Category: {tool.category}
-              </p>
-              <p className="text-sm text-muted-foreground">
-                ¡Try now! and see the magic...
               </p>
             </div>
           </div>
@@ -62,7 +63,9 @@ export function CardDemo({ className, tool, ...props }: CardDemoProps) {
               <span className="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500" />
               <div className="space-y-1">
                 <p className="text-sm font-medium leading-none">{tool.slug}</p>
-                <p className="text-sm text-muted-foreground">{tool.aiPrompt}</p>
+                <p className="text-sm text-muted-foreground">
+                  {`${tool.aiPrompt.slice(0, 100)}...`}
+                </p>
               </div>
             </div>
           </div>

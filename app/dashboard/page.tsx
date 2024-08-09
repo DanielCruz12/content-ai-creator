@@ -25,7 +25,7 @@ const Dashboard = () => {
       <div className="max-w-6xl w-full">
         <TemplateList templates={data} />
       </div>
-     {/*  <Cto /> */}
+      {/*  <Cto /> */}
     </div>
   );
 };

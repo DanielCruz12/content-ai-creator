@@ -2,6 +2,7 @@ import { ModeToggle } from "@/components/toggle-dark-mode";
 import { Sidebar } from "./_components/sidebar";
 import { Navigation } from "@/components/navbar";
 import { SignedIn, UserButton } from "@clerk/nextjs";
+import AsideContent from "./_components/aside-content";
 
 export default function RootLayout({
   children,
@@ -10,14 +11,11 @@ export default function RootLayout({
 }>) {
   return (
     <div className=" min-h-screen">
-      {/* Sidebar izquierdo */}
       <aside className="fixed hidden lg:block top-0 left-0 w-[250px] h-screen p-4 z-20">
         <Sidebar />
       </aside>
 
-      {/* Columna principal */}
       <main className="flex-1 lg:ml-[300px] lg:mr-[300px] min-h-screen p-4">
-        {/* Header */}
         <header className="py-3 px-5 rounded-lg flex justify-between items-center sticky top-0 z-10 bg-white/5 backdrop-blur-md border border-white/20 shadow-lg">
           <div className="flex items-center gap-5">
             <Navigation />
@@ -28,13 +26,11 @@ export default function RootLayout({
           </SignedIn>
         </header>
 
-        {/* Contenido principal */}
-        <div className="mt-4 flex-1 overflow-y-auto">{children}</div>
+       <div className="mt-4 flex-1 overflow-y-auto">{children}</div>
       </main>
 
-      {/* Sidebar derecho */}
-      <aside className="fixed hidden lg:block top-0 right-0 w-[270px] h-screen p-4 z-20">
-        <p>Aside content</p>
+      <aside className="fixed overflow-auto hidden lg:block top-0 right-0 w-[270px] h-screen p-4 z-20">
+        <AsideContent/>
       </aside>
     </div>
   );

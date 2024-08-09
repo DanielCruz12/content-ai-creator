@@ -39,8 +39,11 @@ export const FormComponent: React.FC<Tprops> = ({
                   {selectedTemplate.category}
                 </Badge>
               </CardTitle>
-              <CardDescription className="text-primary pt-2">
+              <CardDescription className="dark:text-[#636363] pt-2">
                 {selectedTemplate.desc}
+              </CardDescription>
+              <CardDescription className="text-primary pt-2">
+                {selectedTemplate.aiPrompt}
               </CardDescription>
             </div>
             <div className="flex py-3">

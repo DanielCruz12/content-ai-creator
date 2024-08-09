@@ -3,13 +3,14 @@ import React from "react";
 import { SearchList } from "./search-list";
 import { CardDemo } from "./card-list";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 interface TemplateListProps {
   templates: any;
 }
 
 export const TemplateList: React.FC<TemplateListProps> = ({ templates }) => {
-
   const [inputValueSearch, setInputValueSearch] = React.useState("");
   const [templateList, setTemplateList] = React.useState(templates);
 
@@ -24,15 +25,21 @@ export const TemplateList: React.FC<TemplateListProps> = ({ templates }) => {
   }, [inputValueSearch, templates]);
 
   return (
-    <div className="gap-4 p-4 ">
-      <div className="grid grid-rows-1 grid-cols-1 gap-4 py-6 ">
+    <div className="gap-4 ">
+      <Link href={"/dashboard/create-form"}>
+        <Button type="button" className="z-50" variant={"default"}>
+          Create template
+        </Button>
+      </Link>
+
+      <div className="grid grid-rows-1 grid-cols-1 gap-4 py-3 pb-8">
         <SearchList
           inputValueSearch={inputValueSearch}
           setInputValueSearch={setInputValueSearch}
         />
       </div>
       {templateList.length > 0 ? (
-        <div className="grid grid-rows-1 grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+        <div className="grid grid-rows-1 grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
           {templateList.map((tool: any, index: number) => (
             <CardDemo key={index} tool={tool} />
           ))}

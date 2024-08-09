@@ -24,11 +24,25 @@ const getFormsCommunity = async () => {
   });
 };
 
+const createForm = async (data: any) => {
+  return HttpClient(`/api/v1/forms`, data, 'post').then((res) => {
+    return res;
+  });
+};
+
+const shareFormToCommunity = async (data: any) => {
+  return HttpClient(`/api/v1/formResponse/share-community`, data, 'post').then((res) => {
+    return res;
+  });
+};
+
 const FormService = {
   getFormsAi,
   getHistoryByUserAi,
   saveResponseDataAi,
-  getFormsCommunity
+  getFormsCommunity,
+  shareFormToCommunity,
+  createForm
 };
 
 export default FormService;
