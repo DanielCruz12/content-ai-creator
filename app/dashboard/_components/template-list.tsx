@@ -26,20 +26,21 @@ export const TemplateList: React.FC<TemplateListProps> = ({ templates }) => {
 
   return (
     <div className="gap-4 ">
-      <Link href={"/dashboard/create-form"}>
-        <Button type="button" className="z-50" variant={"default"}>
-          Create template
-        </Button>
-      </Link>
-
       <div className="grid grid-rows-1 grid-cols-1 gap-4 py-3 pb-8">
         <SearchList
           inputValueSearch={inputValueSearch}
           setInputValueSearch={setInputValueSearch}
         />
       </div>
+
+      <Link href={"/dashboard/create-form"}>
+        <Button type="button" variant={"secondary"}>
+          Create template
+        </Button>
+      </Link>
+
       {templateList.length > 0 ? (
-        <div className="grid grid-rows-1 grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+        <div className="grid grid-rows-1 grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 pt-3">
           {templateList.map((tool: any, index: number) => (
             <CardDemo key={index} tool={tool} />
           ))}
