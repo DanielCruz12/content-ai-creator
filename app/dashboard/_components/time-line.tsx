@@ -18,7 +18,7 @@ export const TimeLine: FC<TimeLineTypes> = ({ history, shareForm }) => {
             <TimeLineCard
               shareForm={shareForm}
               key={item.id}
-              id={item.formId}
+              id={item.id}
               svgIcon={item.form.icon}
               category={item.form.category}
               date={item.createdAt}
