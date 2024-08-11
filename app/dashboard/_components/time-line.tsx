@@ -1,9 +1,10 @@
+/* eslint-disable no-unused-vars */
 import { FC } from "react";
 import TimeLineCard from "@/components/time-line-card";
 
 type TimeLineTypes = {
   history: any;
-  shareForm: any;
+  shareForm: (formId: string, currentStatus: boolean) => Promise<void>;
 };
 
 export const TimeLine: FC<TimeLineTypes> = ({ history, shareForm }) => {
@@ -22,6 +23,7 @@ export const TimeLine: FC<TimeLineTypes> = ({ history, shareForm }) => {
               svgIcon={item.form.icon}
               category={item.form.category}
               date={item.createdAt}
+              status={item.share_status}
               title={item.form_fields_data}
               slug={item.form.slug}
               description={item.responseData}

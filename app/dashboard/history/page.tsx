@@ -22,24 +22,28 @@ const History = () => {
     }
   };
 
-  const shareForm = async (values: any) => {
+  const handleFormShareToggle = async (
+    formId: string,
+    currentStatus: boolean
+  ) => {
     const dataToSend = {
-      formId: values,
-      share_status: true,
+      formId,
+      share_status: !currentStatus,
       userId,
     };
     try {
       await FormService.shareFormToCommunity(dataToSend);
       toast.success(
-        "Your template form was share to the community successfully!",
+        `Your template form was ${currentStatus ? "unshared" : "shared"} to the community successfully!`,
         {
           position: "bottom-center",
           style: { backgroundColor: "#e7e6e6" },
         }
       );
       navigate.push("/dashboard/community");
+      getHistoryByUser(); // Refresh history after sharing/unsharing
     } catch (error) {
-      toast.error("Failed to share", {
+      toast.error(`Failed to ${currentStatus ? "unshare" : "share"}`, {
         position: "bottom-center",
         style: { backgroundColor: "#e7e6e6" },
       });
@@ -51,7 +55,7 @@ const History = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
-  return <TimeLine shareForm={shareForm} history={history} />;
+  return <TimeLine shareForm={handleFormShareToggle} history={history} />;
 };
 
 export default History;

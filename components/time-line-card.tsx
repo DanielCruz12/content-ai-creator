@@ -1,9 +1,10 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import { FC, useState } from "react";
 import moment from "moment";
 import { Button } from "./ui/button";
-import { Share2Icon } from "@radix-ui/react-icons";
+import { Share2Icon, SymbolIcon } from "@radix-ui/react-icons";
 
 type TimeLineCardProps = {
   date: string;
@@ -12,8 +13,9 @@ type TimeLineCardProps = {
   category?: string;
   svgIcon?: string;
   description: string;
+  status: boolean;
   id: string;
-  shareForm: any;
+  shareForm: (formId: string, currentStatus: boolean) => Promise<void>;
 };
 const TimeLineCard: FC<TimeLineCardProps> = ({
   date,
@@ -21,6 +23,7 @@ const TimeLineCard: FC<TimeLineCardProps> = ({
   title,
   shareForm,
   slug,
+  status,
   id,
   description,
 }) => {
@@ -58,11 +61,12 @@ const TimeLineCard: FC<TimeLineCardProps> = ({
         </div>
 
         <Button
-          onClick={() => shareForm(id)}
-          className="inline-flex my-3 items-center px-4 py-2 text-sm font-medium text-gray-900 bg-gray-300 border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-100 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+          variant={status ? "outline" : "default"}
+          onClick={() => shareForm(id, status)}
+          className="inline-flex my-3 items-center px-4 py-2 text-sm font-medium rounded-lg"
         >
-          <Share2Icon />
-          <p className="px-2">Share</p>
+          {status ? <SymbolIcon /> : <Share2Icon />}
+          <p className="px-2">{status ? "Unshare" : "Share"}</p>
         </Button>
       </li>
     </ol>
