@@ -3,7 +3,7 @@ import { IconProps } from "@radix-ui/react-icons/dist/types";
 /* eslint-disable no-unused-vars */
 export type Tool = {
   name: string;
-  description?: string;
+  description: string;
   category: string;
   slug: string;
   aiPrompt: string;

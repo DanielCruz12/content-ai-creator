@@ -27,7 +27,7 @@ export function CardDemo({ className, tool, ...props }: CardDemoProps) {
         <CardHeader>
           <CardTitle>{tool.name} </CardTitle>
           <CardDescription className="text-primary">
-            {tool.description && `${tool.description.slice(0, 100)}...`}
+            {`${tool.description.slice(0, 100)}...`}
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4">
