@@ -1,11 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { FC } from "react";
 import TimeLineCard from "@/components/time-line-card";
-
-type TimeLineTypes = {
-  history: any;
-  shareForm: (formId: string, currentStatus: boolean) => Promise<void>;
-};
+import { TimeLineTypes } from "@/src/types";
 
 export const TimeLine: FC<TimeLineTypes> = ({ history, shareForm }) => {
   return (
@@ -15,7 +11,7 @@ export const TimeLine: FC<TimeLineTypes> = ({ history, shareForm }) => {
       </h1>
       <div className=" flex justify-center items-center">
         <div className="max-w-5xl w-full">
-          {history.map((item: any) => (
+          {history.map((item) => (
             <TimeLineCard
               shareForm={shareForm}
               key={item.id}

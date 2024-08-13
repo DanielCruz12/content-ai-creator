@@ -4,19 +4,20 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import FormService from "@/services/formServices";
+import FormService from "@/src/services/formServices";
 import toast from "react-hot-toast";
 import { useUser } from "@clerk/nextjs";
 import { BarLoader } from "react-spinners";
 import { useRouter } from "next/navigation";
-import { formSchema } from "@/schemas/formSchema";
+import { formSchema } from "@/src/schemas/formSchema";
+import type { CreateFormData, FormField, Tool } from "@/src/types";
 
 const TemplateForm = () => {
   const user = useUser();
   const [loading, setLoading] = useState(false);
   const navigate = useRouter();
 
-  const initialValues = {
+  const initialValues: Tool = {
     name: "",
     description: "",
     category: "",
@@ -26,7 +27,7 @@ const TemplateForm = () => {
     label: "",
     placeholder: "",
   };
-  const formFields = [
+  const formFields: FormField[] = [
     { name: "name", label: "Name", placeholder: "Your template name" },
     {
       name: "description",
@@ -57,7 +58,7 @@ const TemplateForm = () => {
     //* TODO: Save template to the database
     if (!values && !user) return;
 
-    const valuesToSend = {
+    const valuesToSend: CreateFormData = {
       userId: user?.user?.primaryEmailAddress?.id ?? "",
       name: values.name,
       description: values.description,
@@ -65,13 +66,15 @@ const TemplateForm = () => {
       icon: values.icon,
       slug: values.slug,
       aiPrompt: values.aiPrompt,
-      fields: {
-        label: values.label,
-        fieldType: "text",
-        name: values.name,
-        required: true,
-        placeholder: values.placeholder,
-      },
+      fields: [
+        {
+          label: values.label,
+          fieldType: "text",
+          name: values.name,
+          required: true,
+          placeholder: values.placeholder,
+        },
+      ],
     };
 
     try {

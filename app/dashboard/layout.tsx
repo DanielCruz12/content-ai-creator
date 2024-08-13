@@ -1,3 +1,4 @@
+"use client";
 import { ModeToggle } from "@/components/toggle-dark-mode";
 import { Sidebar } from "./_components/sidebar";
 import { Navigation } from "@/components/navbar";
@@ -11,7 +12,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className=" min-h-screen">
+    <div className="min-h-screen">
       <aside className="fixed hidden lg:block top-0 left-0 w-[250px] h-screen p-4 z-20">
         <Sidebar />
       </aside>

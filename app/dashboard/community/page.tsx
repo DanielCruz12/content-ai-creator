@@ -1,16 +1,17 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import FormService from "@/services/formServices";
+import FormService from "@/src/services/formServices";
+import type { FormResponse } from "@/src/types";
 import { BookmarkIcon, Tag } from "lucide-react";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 
 const Community = () => {
-  const [communityData, setCommunityData] = useState<any>([]);
+  const [communityData, setCommunityData] = useState<FormResponse[]>([]);
 
   const fetchCommunityData = async () => {
     const res = await FormService.getFormsCommunity();
-    setCommunityData(res.data);
+    setCommunityData(res);
   };
 
   useEffect(() => {

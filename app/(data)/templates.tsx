@@ -1,6 +1,6 @@
-// eslint-disable-next-line import/no-anonymous-default-export
+/* // eslint-disable-next-line import/no-anonymous-default-export
 export default [
-  /* {
+  {
     name: "Blog Title",
     desc: "An AI tool that generate blog title depends on yout blog information",
     category: "Blog",
@@ -21,7 +21,7 @@ export default [
         name: "outline",
       },
     ],
-  }, */
+  },
   {
     name: "Email Campaign Generator",
     desc: "Create personalized and effective email campaigns to improve your email marketing performance.",
@@ -69,7 +69,7 @@ export default [
       },
     ],
   },
-  /*  {
+  {
     name: "Blog Topic Ideas",
     desc: "An AI tool that serves as your personal blog post title writer, generating catchy and viral-worthy titles in your chosen language.",
     category: "Blog",
@@ -85,7 +85,7 @@ export default [
         required: true,
       },
     ],
-  }, */
+  },
   {
     name: "Youtube SEO Title",
     desc: "An AI tool that serves as your personal blog post title writer, generating catchy and viral-worthy titles in your chosen language.",
@@ -189,7 +189,7 @@ export default [
       },
     ],
   },
-  /* {
+  {
     name: "Add Emojis to Text",
     desc: "An AI tool that serves as your personal blog post title writer, generating catchy and viral-worthy titles in your chosen language.",
     icon: "https://cdn-icons-png.flaticon.com/128/2584/2584606.png",
@@ -205,7 +205,7 @@ export default [
         required: true,
       },
     ],
-  }, */
+  },
   {
     name: "Instagram Post Generator",
     desc: "An AI tool that serves as your personal blog post title writer, generating catchy and viral-worthy titles in your chosen language.",
@@ -224,7 +224,7 @@ export default [
       },
     ],
   },
-  /*   {
+  {
     name: "Instagram Hash Tag Generator",
     desc: "An AI tool that serves as your personal blog post title writer, generating catchy and viral-worthy titles in your chosen language.",
     icon: "https://cdn-icons-png.flaticon.com/128/7045/7045432.png",
@@ -241,7 +241,7 @@ export default [
         required: true,
       },
     ],
-  }, */
+  },
   {
     name: "Instagram Post/Reel Idea",
     desc: "An AI tool that generate New and trending instagram idea depends on your niche",
@@ -382,3 +382,4 @@ export default [
     ],
   },
 ];
+ */

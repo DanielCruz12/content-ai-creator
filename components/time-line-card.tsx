@@ -5,18 +5,8 @@ import { FC, useState } from "react";
 import moment from "moment";
 import { Button } from "./ui/button";
 import { Share2Icon, SymbolIcon } from "@radix-ui/react-icons";
+import { TimeLineCardProps } from "@/src/types";
 
-type TimeLineCardProps = {
-  date: string;
-  title: string;
-  slug: string;
-  category?: string;
-  svgIcon?: string;
-  description: string;
-  status: boolean;
-  id: string;
-  shareForm: (formId: string, currentStatus: boolean) => Promise<void>;
-};
 const TimeLineCard: FC<TimeLineCardProps> = ({
   date,
   category,
@@ -27,7 +17,7 @@ const TimeLineCard: FC<TimeLineCardProps> = ({
   id,
   description,
 }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const toggleExpansion = () => {
     setIsExpanded(!isExpanded);
   };

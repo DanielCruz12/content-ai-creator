@@ -44,12 +44,6 @@ const Cto = () => {
               >
                 Learn more <span aria-hidden="true"> →</span>
               </Button>
-              {/*   <a
-                href="#"
-                className="text-sm font-semibold leading-6 text-black dark:text-white"
-              >
-                
-              </a> */}
             </div>
           </div>
           <div className="relative mt-16 h-80 lg:mt-8">

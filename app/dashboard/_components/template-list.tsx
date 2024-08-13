@@ -5,10 +5,7 @@ import { CardDemo } from "./card-list";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-
-interface TemplateListProps {
-  templates: any;
-}
+import { TemplateListProps, Tool } from "@/src/types";
 
 export const TemplateList: React.FC<TemplateListProps> = ({ templates }) => {
   const [inputValueSearch, setInputValueSearch] = React.useState("");
@@ -41,12 +38,12 @@ export const TemplateList: React.FC<TemplateListProps> = ({ templates }) => {
 
       {templateList.length > 0 ? (
         <div className="grid grid-rows-1 grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 pt-3">
-          {templateList.map((tool: any, index: number) => (
+          {templateList.map((tool: Tool, index: number) => (
             <CardDemo key={index} tool={tool} />
           ))}
         </div>
       ) : (
-        <Skeleton className="flex justify-center items-center w-full h-64">
+        <Skeleton className="flex justify-center items-center w-full h-64 mt-3">
           <p className="text-center p-4 rounded">No templates found.</p>
         </Skeleton>
       )}

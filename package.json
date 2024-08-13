@@ -29,6 +29,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "eslint-config-prettier": "^9.1.0",
+    "ethers": "^6.13.2",
     "formik": "^2.4.6",
     "husky": "^9.1.1",
     "intmax-walletsdk": "^0.0.4",
@@ -49,7 +50,7 @@
     "simplebar-react": "^3.2.4",
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
-    "viem": "^2.19.3",
+    "viem": "^2.19.4",
     "wagmi": "^2.12.5",
     "yup": "^1.4.0"
   },

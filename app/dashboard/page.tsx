@@ -1,11 +1,12 @@
 "use client";
 
 import { TemplateList } from "./_components/template-list";
-import FormService from "@/services/formServices";
+import FormService from "@/src/services/formServices";
+import type { Template } from "@/src/types";
 import { useEffect, useState } from "react";
 
 const Dashboard = () => {
-  const [data, setData] = useState<any>([]);
+  const [data, setData] = useState<Template[]>([]);
 
   const getForms = async () => {
     try {
@@ -25,7 +26,6 @@ const Dashboard = () => {
       <div className="max-w-6xl w-full">
         <TemplateList templates={data} />
       </div>
-      {/*  <Cto /> */}
     </div>
   );
 };
