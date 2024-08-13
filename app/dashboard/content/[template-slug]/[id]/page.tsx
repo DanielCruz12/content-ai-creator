@@ -1,30 +1,50 @@
 "use client";
-import React, { useState } from "react";
-/* import { Output } from "../../_components/output";
- */ import templates from "@/app/(data)/templates";
+
+import React, { useEffect, useState } from "react";
 import { FormComponent } from "../../../_components/form";
-import { chatSession } from "@/utils/aiModel";
 import toast from "react-hot-toast";
 import { BarLoader } from "react-spinners";
 import { useUser } from "@clerk/nextjs";
-import FormService from "@/services/formServices";
+import FormService from "@/src/services/formServices";
+import { chatSession } from "@/src/utils/aiModel";
+import type { SaveResponseData, Template } from "@/src/types";
 
-interface Tprops {
+interface CreateNewContentProps {
   params: {
     "template-slug": string;
     id: string;
   };
 }
 
-const CreateNewContent: React.FC<Tprops> = ({ params }) => {
-  const [loading, setLoading] = useState(false);
-  const [dataOutput, setDataOutput] = useState<any>(null);
+interface FormValues {
+  [key: string]: string | number | boolean;
+}
+
+const CreateNewContent: React.FC<CreateNewContentProps> = ({ params }) => {
+  const [loading, setLoading] = useState<boolean>(false);
+  const [dataOutput, setDataOutput] = useState<string | null>(null);
   const user = useUser();
-  const selectedTemplate = templates.find(
+
+  const [data, setData] = useState<Template[]>([]);
+
+  const getForms = async () => {
+    try {
+      const res = await FormService.getFormsAi();
+      setData(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getForms();
+  }, []);
+
+  const selectedTemplate = data.find(
     (item) => item.slug === params["template-slug"]
   );
 
-  const generateAIContent = async (values: any) => {
+  const generateAIContent = async (values: FormValues) => {
     if (!selectedTemplate) return;
 
     const formValues = Object.entries(values)
@@ -39,6 +59,8 @@ const CreateNewContent: React.FC<Tprops> = ({ params }) => {
     try {
       if (!params.id) return;
       setLoading(true);
+
+      //* depends on what model the user wants:
       const result = await chatSession.sendMessage(finalPrompt);
       setDataOutput(result.response.text());
 
@@ -46,12 +68,12 @@ const CreateNewContent: React.FC<Tprops> = ({ params }) => {
         position: "bottom-center",
         style: { backgroundColor: "#e7e6e6" },
       });
-      const dataToSend = {
+      const dataToSend: SaveResponseData = {
         userId: user?.user?.primaryEmailAddress?.id ?? "",
         responseData: result.response.text(),
         share_status: false,
         formId: params.id,
-        form_fields_data: firstValue,
+        form_fields_data: firstValue as string,
       };
       await FormService.saveResponseDataAi(dataToSend);
       setLoading(false);
@@ -71,11 +93,13 @@ const CreateNewContent: React.FC<Tprops> = ({ params }) => {
         </div>
       )}
       <div className=" w-full pt-10 max-w-6xl">
-        <FormComponent
-          selectedTemplate={selectedTemplate}
-          generateAIContent={generateAIContent}
-          loading={loading}
-        />
+        {selectedTemplate && (
+          <FormComponent
+            selectedTemplate={selectedTemplate}
+            generateAIContent={generateAIContent}
+            loading={loading}
+          />
+        )}
       </div>
       <div className=" w-full pt-10 max-w-6xl">
         <div className="w-full bg-white dark:bg-gray-900 rounded-md shadow-md p-4">

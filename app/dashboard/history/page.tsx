@@ -1,22 +1,23 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import FormService from "@/services/formServices";
+import FormService from "@/src/services/formServices";
 import { TimeLine } from "../_components/time-line";
 import { useUser } from "@clerk/nextjs";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import type { FormResponse, ShareFormData } from "@/src/types";
 
 const History = () => {
   const { user } = useUser();
   const userId = user?.primaryEmailAddress?.id;
   const navigate = useRouter();
-  const [history, setHistory] = useState<any[]>([]);
+  const [history, setHistory] = useState<FormResponse[]>([]);
 
   const getHistoryByUser = async () => {
     if (!user) return;
     try {
       const res = await FormService.getHistoryByUserAi(userId);
-      setHistory(res.data);
+      setHistory(res);
     } catch (error) {
       console.log(error);
     }
@@ -26,7 +27,7 @@ const History = () => {
     formId: string,
     currentStatus: boolean
   ) => {
-    const dataToSend = {
+    const dataToSend: ShareFormData = {
       formId,
       share_status: !currentStatus,
       userId,

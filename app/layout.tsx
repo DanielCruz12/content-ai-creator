@@ -1,5 +1,5 @@
 "use client";
-import "./globals.css";
+import { useMemo } from "react";
 import { Inter as FontSans } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "../components/theme-provider";
@@ -9,9 +9,10 @@ import NextTopLoader from "nextjs-toploader";
 import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
-import "@rainbow-me/rainbowkit/styles.css";
 import { WagmiProvider } from "wagmi";
-import { config } from "@/config/rainbow";
+import { config } from "@/src/config/rainbow";
+import "@rainbow-me/rainbowkit/styles.css";
+import "./globals.css";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -20,30 +21,30 @@ const fontSans = FontSans({
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
-  const client = new QueryClient();
+}) {
+  const queryClient = useMemo(() => new QueryClient(), []);
 
   return (
-    <ClerkProvider
-      appearance={{
-        baseTheme: dark,
-        layout: {
-          socialButtonsPlacement: "bottom",
-          socialButtonsVariant: "iconButton",
-        },
-      }}
-    >
-      <html lang="en" suppressHydrationWarning={true}>
-        <body
-          className={cn(
-            "min-h-screen font-sans antialiased",
-            fontSans.variable
-          )}
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={cn(
+          "min-h-screen font-sans antialiased",
+          fontSans.variable
+        )}
+      >
+        <ClerkProvider
+          appearance={{
+            baseTheme: dark,
+            layout: {
+              socialButtonsPlacement: "bottom",
+              socialButtonsVariant: "iconButton",
+            },
+          }}
         >
           <WagmiProvider config={config}>
-            <QueryClientProvider client={client}>
+            <QueryClientProvider client={queryClient}>
               <RainbowKitProvider>
                 <ThemeProvider
                   attribute="class"
@@ -58,8 +59,8 @@ export default function RootLayout({
               </RainbowKitProvider>
             </QueryClientProvider>
           </WagmiProvider>
-        </body>
-      </html>
-    </ClerkProvider>
+        </ClerkProvider>
+      </body>
+    </html>
   );
 }

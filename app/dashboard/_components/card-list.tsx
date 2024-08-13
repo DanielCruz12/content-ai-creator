@@ -12,21 +12,7 @@ import {
 } from "@/components/ui/card";
 import { FocusIcon } from "lucide-react";
 import Link from "next/link";
-
-type Tool = {
-  name: string;
-  desc: string;
-  category: string;
-  slug: string;
-  aiPrompt: string;
-  id: string;
-  icon: string;
-};
-
-type CardDemoProps = {
-  className?: string;
-  tool: Tool;
-};
+import { CardDemoProps } from "@/src/types";
 
 export function CardDemo({ className, tool, ...props }: CardDemoProps) {
   return (
@@ -41,13 +27,13 @@ export function CardDemo({ className, tool, ...props }: CardDemoProps) {
         <CardHeader>
           <CardTitle>{tool.name} </CardTitle>
           <CardDescription className="text-primary">
-            {`${tool.desc.slice(0, 100)}...`}
+            {`${tool.description.slice(0, 100)}...`}
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4">
           <div className=" flex items-center space-x-4 rounded-md border p-4">
             {tool.icon ? (
-              <img className="w-7 h-7" src={tool.icon} alt={tool.desc} />
+              <img className="w-7 h-7" src={tool.icon} alt={tool.description} />
             ) : (
               <FocusIcon />
             )}

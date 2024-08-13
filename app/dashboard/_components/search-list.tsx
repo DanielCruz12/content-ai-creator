@@ -41,7 +41,11 @@ export function SearchList({ setInputValueSearch }: any) {
                 <Form className="w-full">
                   <Field
                     name="value"
-                    onChange={(e: any) => {
+                    onChange={(
+                      e: React.ChangeEvent<
+                        HTMLInputElement | HTMLTextAreaElement
+                      >
+                    ) => {
                       setFieldValue("value", e.target.value);
                       setInputValueSearch(e.target.value);
                     }}

@@ -13,13 +13,9 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { MagicWandIcon } from "@radix-ui/react-icons";
 import { Loader } from "lucide-react";
-interface Tprops {
-  selectedTemplate: any;
-  generateAIContent: any;
-  loading: boolean;
-}
+import { FormComponentProps, FormField } from "@/src/types";
 
-export const FormComponent: React.FC<Tprops> = ({
+export const FormComponent: React.FC<FormComponentProps> = ({
   selectedTemplate,
   generateAIContent,
   loading,
@@ -49,7 +45,7 @@ export const FormComponent: React.FC<Tprops> = ({
             <div className="flex py-3">
               <Formik
                 initialValues={selectedTemplate.form.reduce(
-                  (acc: any, field: any) => {
+                  (acc: { [key: string]: string }, field: FormField) => {
                     acc[field.name] = "";
                     return acc;
                   },
@@ -60,11 +56,15 @@ export const FormComponent: React.FC<Tprops> = ({
               >
                 {({ setFieldValue }) => (
                   <Form className="flex w-full flex-col md:flex-col gap-4">
-                    {selectedTemplate.form.map((field: any) => (
+                    {selectedTemplate.form.map((field) => (
                       <Field
                         key={field.name}
                         name={field.name}
-                        onChange={(e: any) => {
+                        onChange={(
+                          e: React.ChangeEvent<
+                            HTMLInputElement | HTMLTextAreaElement
+                          >
+                        ) => {
                           setFieldValue(field.name, e.target.value);
                         }}
                         type={field.field}

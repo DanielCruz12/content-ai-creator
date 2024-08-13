@@ -6,7 +6,7 @@ import "quill/dist/quill.snow.css";
 import { Button } from "@/components/ui/button";
 import { Icons } from "@/components/ui/Icons";
 import toast from "react-hot-toast";
-import { quillFormats, quillModules } from "@/utils/quill";
+import { quillFormats, quillModules } from "@/src/utils/quill";
 
 const QuillEditor = dynamic(() => import("react-quill"), { ssr: false });
 
