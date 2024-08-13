@@ -87,7 +87,7 @@ export type FormField = {
 
 export type Template = {
   name: string;
-  desc: string;
+  description: string;
   category: string;
   slug: string;
   aiPrompt: string;

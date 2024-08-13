@@ -36,7 +36,7 @@ export const FormComponent: React.FC<FormComponentProps> = ({
                 </Badge>
               </CardTitle>
               <CardDescription className="dark:text-[#636363] pt-2">
-                {selectedTemplate.desc}
+                {selectedTemplate.description}
               </CardDescription>
               <CardDescription className="text-primary pt-2">
                 {selectedTemplate.aiPrompt}
