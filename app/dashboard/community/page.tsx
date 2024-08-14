@@ -1,10 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
+
+import moment from "moment";
+import React, { useEffect, useState } from "react";
 import FormService from "@/src/services/formServices";
 import type { FormResponse } from "@/src/types";
 import { BookmarkIcon, Tag } from "lucide-react";
-import moment from "moment";
-import React, { useEffect, useState } from "react";
 
 const Community = () => {
   const [communityData, setCommunityData] = useState<FormResponse[]>([]);
@@ -42,9 +43,12 @@ const Community = () => {
                   </span>
                 </div>
               </div>
-              <span className="text-gray-700 dark:text-gray-300 text-xs sm:text-sm">
-                danDev
-              </span>
+              <div className="text-gray-700 dark:text-gray-300 text-xs sm:text-sm">
+                <div className="flex items-center mr-6 mb-2">
+                  <Tag className="w-4 h-4" />
+                  <span className="ml-3">{item.form.slug}</span>
+                </div>
+              </div>
             </div>
             <p className="text-black dark:text-white text-lg leading-snug mt-3">
               {item.form_fields_data}
@@ -68,15 +72,10 @@ const Community = () => {
                     <path d="M12 21.638h-.014C9.403 21.59 1.95 14.856 1.95 8.478c0-3.064 2.525-5.754 5.403-5.754 2.29 0 3.83 1.58 4.646 2.73.814-1.148 2.354-2.73 4.645-2.73 2.88 0 5.404 2.69 5.404 5.755 0 6.376-7.454 13.11-10.037 13.157H12zM7.354 4.225c-2.08 0-3.903 1.988-3.903 4.255 0 5.74 7.034 11.596 8.55 11.658 1.518-.062 8.55-5.917 8.55-11.658 0-2.267-1.823-4.255-3.903-4.255-2.528 0-3.94 2.936-3.952 2.965-.23.562-1.156.562-1.387 0-.014-.03-1.425-2.965-3.954-2.965z"></path>
                   </g>
                 </svg>
-                <span className="ml-3">615</span>
-              </div>
-
-              <div className="flex items-center mr-6 mb-2">
-                <Tag className="w-4 h-4" />
-                <span className="ml-3">{item.form.slug}</span>
+                <span className="ml-1">615</span>
               </div>
               <div className="flex items-center mb-2">
-                <BookmarkIcon className="w-4 h-4" />
+                <BookmarkIcon className="w-5 h-5" />
               </div>
             </div>
           </div>

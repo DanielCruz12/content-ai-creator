@@ -9,7 +9,7 @@ export default function Home() {
   const session = cookieStore.get("__session");
 
   return (
-    <div className="relative overflow-hidden py-24 lg:py-32">
+    <div className="relative overflow-hidden py-24 lg:py-32 px-7">
       <div
         aria-hidden="true"
         className="flex absolute -top-96 start-1/2 transform -translate-x-1/2"
@@ -48,7 +48,7 @@ export default function Home() {
         </h1>
       </div>
       <div className="mt-5 max-w-3xl text-center mx-auto">
-        <p className="text-xl text-muted-foreground">
+        <p className="md:text-xl text-base text-muted-foreground">
           DanDevPrompt is a platform where you can find prompts of the community
           that you can Share, comment and posts with others sharing your ideas
           and projects.

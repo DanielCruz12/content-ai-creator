@@ -1,13 +1,14 @@
+import { AxiosError, AxiosRequestConfig } from "axios";
 import AxiosConfig from "../config/axios";
 
 //* Create HTTP Client with Axios
 const HttpClient = async (
   url: string,
   data = {},
-  method = "get",
+  method: "get" | "post" | "put" | "delete" | "patch" = "get",
   headers = {}
 ) => {
-  const config: any = {
+  const config: AxiosRequestConfig = {
     method,
     url,
     headers,
@@ -21,15 +22,18 @@ const HttpClient = async (
 
   try {
     return await AxiosConfig(config);
-  } catch (e: any) {
-    if (e.response.status === 401) {
+  } catch (e) {
+    const error = e as AxiosError;
+
+    if (error.response?.status === 401) {
       localStorage.clear();
-      return Promise.reject(e.response);
-    } else if (e.response.status === 403) {
-      return Promise.reject(e.response);
+      return Promise.reject(error.response);
+    } else if (error.response?.status === 403) {
+      return Promise.reject(error.response);
     } else {
-      throw e;
+      throw error;
     }
   }
 };
+
 export default HttpClient;

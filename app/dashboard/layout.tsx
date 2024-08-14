@@ -20,10 +20,10 @@ export default function RootLayout({
       <main className="flex-1 lg:ml-[300px] lg:mr-[300px] min-h-screen p-4">
         <header className="py-3 px-5 rounded-lg flex justify-between items-center sticky top-0 z-10 bg-white/5 backdrop-blur-md border border-white/20 shadow-lg">
           <div className="flex items-center gap-5">
-            <div className="block md:hidden">
+            <div className="block lg:hidden">
               <Navigation />
             </div>
-            <div className="hidden md:block">
+            <div className="hidden lg:block">
               <ConnectButton />
             </div>
             <ModeToggle />

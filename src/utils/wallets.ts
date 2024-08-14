@@ -8,8 +8,8 @@ export const wallets = [
       iconUrl: "https://wallet.intmax.io/favicon.ico",
     },
     metadata: {
-      name: "Rainbow-Kit Demo",
-      description: "Rainbow-Kit Demo",
+      name: "Dandev app",
+      description: "Dandev app",
       icons: ["https://intmaxwallet-sdk-wallet.vercel.app/vite.svg"],
     },
   }),
@@ -23,8 +23,8 @@ export const additionalWallets = [
       iconUrl: "https://intmaxwallet-sdk-wallet.vercel.app/vite.svg",
     },
     metadata: {
-      name: "Rainbow-Kit Demo",
-      description: "Rainbow-Kit Demo",
+      name: "Dandev app",
+      description: "Dandev app",
       icons: ["https://intmaxwallet-sdk-wallet.vercel.app/vite.svg"],
     },
   }),
@@ -36,8 +36,8 @@ export const additionalWallets = [
       iconUrl: "https://intmaxwallet-sdk-wallet.vercel.app/vite.svg",
     },
     metadata: {
-      name: "Rainbow-Kit Demo",
-      description: "Rainbow-Kit Demo",
+      name: "Dandev app",
+      description: "Dandev app",
       icons: ["https://intmaxwallet-sdk-wallet.vercel.app/vite.svg"],
     },
   }),
@@ -48,8 +48,8 @@ export const additionalWallets = [
       iconUrl: "https://wallet.intmax.io/favicon.ico",
     },
     metadata: {
-      name: "Rainbow-Kit Demo",
-      description: "Rainbow-Kit Demo",
+      name: "Dandev app",
+      description: "Dandev app",
       icons: ["https://intmaxwallet-sdk-wallet.vercel.app/vite.svg"],
     },
   }),
