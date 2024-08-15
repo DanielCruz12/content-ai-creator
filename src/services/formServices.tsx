@@ -52,8 +52,19 @@ const shareFormToCommunity = async (
   );
 };
 
+const deleteHistoryResponseById = async (
+  formId: string
+): Promise<FormResponse> => {
+  return HttpClient(`/api/v1/formResponse/${formId}`, {}, "delete").then(
+    (res) => {
+      return res.data as FormResponse;
+    }
+  );
+};
+
 const FormService = {
   getFormsAi,
+  deleteHistoryResponseById,
   getHistoryByUserAi,
   saveResponseDataAi,
   getFormsCommunity,

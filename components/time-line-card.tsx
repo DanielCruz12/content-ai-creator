@@ -12,6 +12,7 @@ const TimeLineCard: FC<TimeLineCardProps> = ({
   category,
   title,
   shareForm,
+  deleteForm,
   slug,
   status,
   id,
@@ -49,15 +50,24 @@ const TimeLineCard: FC<TimeLineCardProps> = ({
             </button>
           </div>
         </div>
-
-        <Button
-          variant={status ? "outline" : "default"}
-          onClick={() => shareForm(id, status)}
-          className="inline-flex my-3 items-center px-4 py-2 text-sm font-medium rounded-lg"
-        >
-          {status ? <SymbolIcon /> : <Share2Icon />}
-          <p className="px-2">{status ? "Unshare" : "Share"}</p>
-        </Button>
+        <div className="">
+          <Button
+            variant={status ? "outline" : "default"}
+            onClick={() => shareForm(id, status)}
+            className="inline-flex my-3 items-center px-4 py-2 text-sm font-medium rounded-lg"
+          >
+            {status ? <SymbolIcon /> : <Share2Icon />}
+            <p className="px-2">{status ? "Unshare" : "Share"}</p>
+          </Button>
+          <Button
+            variant={"outline"}
+            onClick={() => deleteForm(id)}
+            className="text-red-700 mx-3 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
+          >
+            <SymbolIcon />
+            <p className="px-2">{"Delete"}</p>
+          </Button>
+        </div>
       </li>
     </ol>
   );

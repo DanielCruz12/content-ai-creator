@@ -41,10 +41,31 @@ const History = () => {
           style: { backgroundColor: "#e7e6e6" },
         }
       );
-      navigate.push("/dashboard/community");
-      getHistoryByUser(); // Refresh history after sharing/unsharing
+      if (!currentStatus) {
+        navigate.push("/dashboard/community");
+      }
+      getHistoryByUser(); //* Refresh history after sharing/unsharing
     } catch (error) {
       toast.error(`Failed to ${currentStatus ? "unshare" : "share"}`, {
+        position: "bottom-center",
+        style: { backgroundColor: "#e7e6e6" },
+      });
+    }
+  };
+
+  const deleteForm = async (formId: string) => {
+    if (!formId) return;
+    console.log(formId);
+
+    try {
+      await FormService.deleteHistoryResponseById(formId);
+      toast.success(`Your history result form was deleted successfully!`, {
+        position: "bottom-center",
+        style: { backgroundColor: "#e7e6e6" },
+      });
+      getHistoryByUser();
+    } catch (error) {
+      toast.error(`Failed to delete`, {
         position: "bottom-center",
         style: { backgroundColor: "#e7e6e6" },
       });
@@ -56,7 +77,13 @@ const History = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
-  return <TimeLine shareForm={handleFormShareToggle} history={history} />;
+  return (
+    <TimeLine
+      deleteForm={deleteForm}
+      shareForm={handleFormShareToggle}
+      history={history}
+    />
+  );
 };
 
 export default History;
