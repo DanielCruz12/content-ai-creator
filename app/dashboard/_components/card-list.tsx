@@ -19,7 +19,7 @@ export function CardDemo({ className, tool, ...props }: CardDemoProps) {
     <Link href={`/dashboard/content/${tool.slug}/${tool.id}`}>
       <Card
         className={cn(
-          "w-[340px] hover:cursor-pointer border-[1px] dark:border-[#2c2c2c] border-[#6d6d6d] md:w-auto max-w-[390px]",
+          "w-full hover:cursor-pointer border-[1px] dark:border-[#2c2c2c] border-[#6d6d6d]",
           className
         )}
         {...props}

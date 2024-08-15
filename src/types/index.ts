@@ -114,6 +114,7 @@ type HistoryItem = {
 export type TimeLineTypes = {
   history: HistoryItem[];
   shareForm: (formId: string, currentStatus: boolean) => Promise<void>;
+  deleteForm: (formId: string) => Promise<void>;
 };
 
 export type TimeLineCardProps = {
@@ -126,6 +127,7 @@ export type TimeLineCardProps = {
   status: boolean;
   id: string;
   shareForm: (formId: string, currentStatus: boolean) => Promise<void>;
+  deleteForm: (formId: string) => Promise<void>;
 };
 
 export type SidebarProps = {

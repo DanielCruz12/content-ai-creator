@@ -3,7 +3,7 @@ import { FC } from "react";
 import TimeLineCard from "@/components/time-line-card";
 import { TimeLineTypes } from "@/src/types";
 
-export const TimeLine: FC<TimeLineTypes> = ({ history, shareForm }) => {
+export const TimeLine: FC<TimeLineTypes> = ({ history, shareForm, deleteForm }) => {
   return (
     <div className="grid grid-cols-1 grid-rows-1 mb-[10rem] px-10">
       <h1 className="m-4 pb-5 text-2xl text-center font-semibold leading-none tracking-tight text-gray-900 md:text-4xl dark:text-white">
@@ -14,6 +14,7 @@ export const TimeLine: FC<TimeLineTypes> = ({ history, shareForm }) => {
           {history.map((item) => (
             <TimeLineCard
               shareForm={shareForm}
+              deleteForm={deleteForm}
               key={item.id}
               id={item.id}
               svgIcon={item.form.icon}
