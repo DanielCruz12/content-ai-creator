@@ -10,7 +10,7 @@ export type Tool = {
   label?: string;
   placeholder?: string;
   id?: string;
-  icon:any
+  icon: any;
 };
 
 export type CardDemoProps = {
@@ -64,23 +64,29 @@ export type User = {
   name: string;
 };
 
+export type Likes = {
+  id: string;
+  userId: string
+};
+
 export type FormResponse = {
   id: string;
   formId: string;
   userId: string;
-  createdAt: string
+  createdAt: string;
   responseData: string;
   form_fields_data: string;
   share_status: boolean;
   form: Form;
   user: User;
+  likes: Likes[];
 };
 
 export type FormField = {
   name: string;
   label: string;
   placeholder?: string;
-  field?: string
+  field?: string;
   fieldType?: "text" | "textarea";
   required?: boolean;
 };

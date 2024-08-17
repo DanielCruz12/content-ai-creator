@@ -62,6 +62,29 @@ const deleteHistoryResponseById = async (
   );
 };
 
+const likeResponseId = async (data: any) => {
+  return HttpClient(`api/v1/formResponse/like`, data, "post").then((res) => {
+    return res.data as FormResponse;
+  });
+};
+
+const unLikeResponseId = async (data: any) => {
+  return HttpClient(`api/v1/formResponse/unlike`, data, "post").then((res) => {
+    return res.data as FormResponse;
+  });
+};
+const saveResponseId = async (data: any) => {
+  return HttpClient(`api/v1/formResponse/save`, data, "post").then((res) => {
+    return res.data as FormResponse;
+  });
+};
+
+const unSaveResponseId = async (data: any) => {
+  return HttpClient(`api/v1/formResponse/unsave`, data, "post").then((res) => {
+    return res.data as FormResponse;
+  });
+};
+
 const FormService = {
   getFormsAi,
   deleteHistoryResponseById,
@@ -69,6 +92,10 @@ const FormService = {
   saveResponseDataAi,
   getFormsCommunity,
   shareFormToCommunity,
+  likeResponseId,
+  unLikeResponseId,
+  saveResponseId,
+  unSaveResponseId,
   createForm,
 };
 

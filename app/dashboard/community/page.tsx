@@ -6,9 +6,36 @@ import React, { useEffect, useState } from "react";
 import FormService from "@/src/services/formServices";
 import type { FormResponse } from "@/src/types";
 import { BookmarkIcon, Tag } from "lucide-react";
+import { useUser } from "@clerk/nextjs";
 
 const Community = () => {
   const [communityData, setCommunityData] = useState<FormResponse[]>([]);
+
+  const user = useUser();
+  const userLoggedId = user?.user?.primaryEmailAddress?.id ?? "";
+
+  // TODO necesito traer la info del formResponse para ver si en likes tiene
+  const userHasLiked = communityData.some((item) =>
+    item.likes.some((like: { userId: string }) => like.userId === userLoggedId)
+  );
+
+  const handleLikePost = async (values: any) => {
+    // TODO: Implement like post functionality
+    const dataToSend = {
+      userId: userLoggedId,
+      formResponseId: values.id,
+    };
+    try {
+      if (userHasLiked) {
+        await FormService.unLikeResponseId(dataToSend);
+      } else {
+        await FormService.likeResponseId(dataToSend);
+      }
+      fetchCommunityData();
+    } catch (error) {
+      console.error("Error handling like:");
+    }
+  };
 
   const fetchCommunityData = async () => {
     const res = await FormService.getFormsCommunity();
@@ -66,16 +93,19 @@ const Community = () => {
             </p>
             <div className="border-gray-200 dark:border-gray-600 border border-b-0 my-1"></div>
             <div className="text-gray-500 dark:text-gray-400 flex flex-wrap mt-3">
-              <div className="flex items-center mr-6 mb-2">
-                <svg className="fill-current h-5 w-auto" viewBox="0 0 24 24">
-                  <g>
-                    <path d="M12 21.638h-.014C9.403 21.59 1.95 14.856 1.95 8.478c0-3.064 2.525-5.754 5.403-5.754 2.29 0 3.83 1.58 4.646 2.73.814-1.148 2.354-2.73 4.645-2.73 2.88 0 5.404 2.69 5.404 5.755 0 6.376-7.454 13.11-10.037 13.157H12zM7.354 4.225c-2.08 0-3.903 1.988-3.903 4.255 0 5.74 7.034 11.596 8.55 11.658 1.518-.062 8.55-5.917 8.55-11.658 0-2.267-1.823-4.255-3.903-4.255-2.528 0-3.94 2.936-3.952 2.965-.23.562-1.156.562-1.387 0-.014-.03-1.425-2.965-3.954-2.965z"></path>
-                  </g>
-                </svg>
-                <span className="ml-1">615</span>
+              <div className="flex items-center mr-4 mb-2">
+                <div className="heart-bg">
+                  <div
+                    className={`heart-icon ${userHasLiked ? "liked" : ""}`}
+                    onClick={() => handleLikePost(item)}
+                  ></div>
+                </div>
+                <span className="pl-3">{item.likes.length}</span>
+
               </div>
+              
               <div className="flex items-center mb-2">
-                <BookmarkIcon className="w-5 h-5" />
+                <BookmarkIcon className="w-6 h-6" />
               </div>
             </div>
           </div>
