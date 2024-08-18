@@ -1,25 +1,10 @@
 "use client";
 
+import useGetForms from "@/src/hooks/useGetForms";
 import { TemplateList } from "./_components/template-list";
-import FormService from "@/src/services/formServices";
-import type { Template } from "@/src/types";
-import { useEffect, useState } from "react";
 
 const Dashboard = () => {
-  const [data, setData] = useState<Template[]>([]);
-
-  const getForms = async () => {
-    try {
-      const res = await FormService.getFormsAi();
-      setData(res);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    getForms();
-  }, []);
+  const { data } = useGetForms();
 
   return (
     <div className="flex flex-col items-center rounded-lg">

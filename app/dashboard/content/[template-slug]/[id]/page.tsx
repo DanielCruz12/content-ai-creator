@@ -1,13 +1,14 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { FormComponent } from "../../../_components/form";
 import toast from "react-hot-toast";
 import { BarLoader } from "react-spinners";
 import { useUser } from "@clerk/nextjs";
 import FormService from "@/src/services/formServices";
 import { chatSession } from "@/src/utils/aiModel";
-import type { SaveResponseData, Template } from "@/src/types";
+import type { SaveResponseData } from "@/src/types";
+import useGetForms from "@/src/hooks/useGetForms";
 
 interface CreateNewContentProps {
   params: {
@@ -24,21 +25,7 @@ const CreateNewContent: React.FC<CreateNewContentProps> = ({ params }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [dataOutput, setDataOutput] = useState<string | null>(null);
   const user = useUser();
-
-  const [data, setData] = useState<Template[]>([]);
-
-  const getForms = async () => {
-    try {
-      const res = await FormService.getFormsAi();
-      setData(res);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    getForms();
-  }, []);
+  const { data } = useGetForms();
 
   const selectedTemplate = data.find(
     (item) => item.slug === params["template-slug"]

@@ -14,7 +14,7 @@ const sidebarItems: SidebarProps[] = [
   { label: "dashboard", icon: DashboardIcon, href: "/dashboard" },
   { label: "Community", icon: PersonIcon, href: "/dashboard/community" },
   { label: "History", icon: ClockIcon, href: "/dashboard/history" },
-  { label: "Settings", icon: GearIcon, href: "/" },
+  { label: "Settings", icon: GearIcon, href: "/dashboard/settings" },
 ];
 
 export const Sidebar = () => {
