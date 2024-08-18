@@ -14,7 +14,7 @@ const Community = () => {
   const user = useUser();
   const userLoggedId = user?.user?.primaryEmailAddress?.id ?? "";
 
-  // TODO necesito traer la info del formResponse para ver si en likes tiene
+  // TODO check if formResponse has likes already
   const userHasLiked = communityData.some((item) =>
     item.likes.some((like: { userId: string }) => like.userId === userLoggedId)
   );

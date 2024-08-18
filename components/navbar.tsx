@@ -38,6 +38,11 @@ const components: { title: string; href: string; description: string }[] = [
     description:
       "A place for users to interact, share information, and engage with the community.",
   },
+  {
+    title: "Settings",
+    href: "/dashboard/settings",
+    description: "You can update your profile information.",
+  },
 ];
 
 export function Navigation() {

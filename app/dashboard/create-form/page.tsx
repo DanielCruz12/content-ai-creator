@@ -107,7 +107,7 @@ const TemplateForm = () => {
       <Alert className="dark:bg-slate-700">
         <AlertTitle>Heads up!</AlertTitle>
         <AlertDescription>
-          You can add components and dependencies to your app using the cli.
+          You can create your own AI form template to share with the community.
         </AlertDescription>
       </Alert>
 

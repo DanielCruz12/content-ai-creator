@@ -6,7 +6,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Formik, Form, Field } from "formik";
 import { Badge } from "@/components/ui/badge";
@@ -69,7 +68,7 @@ export const FormComponent: React.FC<FormComponentProps> = ({
                         }}
                         type={field.field}
                         placeholder={field.label}
-                        as={field.field === "textarea" ? Textarea : Input}
+                        as={Textarea}
                         className="mb-2"
                       />
                     ))}
