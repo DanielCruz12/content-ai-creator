@@ -66,7 +66,12 @@ export type User = {
 
 export type Likes = {
   id: string;
-  userId: string
+  userId: string;
+};
+
+export type Bookmark = {
+  id: string;
+  userId: string;
 };
 
 export type FormResponse = {
@@ -77,9 +82,11 @@ export type FormResponse = {
   responseData: string;
   form_fields_data: string;
   share_status: boolean;
+  isRecommended?: boolean;
   form: Form;
   user: User;
   likes: Likes[];
+  savedResponses: Bookmark[];
 };
 
 export type FormField = {
@@ -98,6 +105,7 @@ export type Template = {
   slug: string;
   aiPrompt: string;
   id: string;
+  isRecommended?: boolean;
   icon: string;
   form: FormField[];
 };

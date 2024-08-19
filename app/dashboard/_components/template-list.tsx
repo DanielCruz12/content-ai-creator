@@ -1,10 +1,10 @@
 "use client";
 import React from "react";
+import Link from "next/link";
 import { SearchList } from "./search-list";
 import { CardDemo } from "./card-list";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { TemplateListProps, Tool } from "@/src/types";
 
 export const TemplateList: React.FC<TemplateListProps> = ({ templates }) => {
@@ -12,7 +12,7 @@ export const TemplateList: React.FC<TemplateListProps> = ({ templates }) => {
   const [templateList, setTemplateList] = React.useState(templates);
 
   React.useEffect(() => {
-    const filterData = templates.filter((item: any) =>
+    const filterData = templates.filter((item) =>
       item.name.toLowerCase().includes(inputValueSearch.toLowerCase())
     );
     setTemplateList(filterData);
@@ -29,6 +29,7 @@ export const TemplateList: React.FC<TemplateListProps> = ({ templates }) => {
           setInputValueSearch={setInputValueSearch}
         />
       </div>
+      {}
 
       <Link href={"/dashboard/create-form"}>
         <Button type="button" variant={"secondary"}>
