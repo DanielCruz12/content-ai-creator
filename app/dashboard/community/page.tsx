@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import moment from "moment";
@@ -7,6 +6,8 @@ import FormService from "@/src/services/formServices";
 import type { FormResponse } from "@/src/types";
 import { BookmarkIcon, Tag } from "lucide-react";
 import { useUser } from "@clerk/nextjs";
+import { BookmarkFilledIcon } from "@radix-ui/react-icons";
+import Image from "next/image";
 
 const Community = () => {
   const [communityData, setCommunityData] = useState<FormResponse[]>([]);
@@ -14,16 +15,11 @@ const Community = () => {
   const user = useUser();
   const userLoggedId = user?.user?.primaryEmailAddress?.id ?? "";
 
-  // TODO check if formResponse has likes already
-  const userHasLiked = communityData.some((item) =>
-    item.likes.some((like: { userId: string }) => like.userId === userLoggedId)
-  );
-
-  const handleLikePost = async (values: any) => {
+  const handleLikePost = async (postId: string, userHasLiked: boolean) => {
     // TODO: Implement like post functionality
     const dataToSend = {
       userId: userLoggedId,
-      formResponseId: values.id,
+      formResponseId: postId,
     };
     try {
       if (userHasLiked) {
@@ -34,6 +30,24 @@ const Community = () => {
       fetchCommunityData();
     } catch (error) {
       console.error("Error handling like:");
+    }
+  };
+
+  const handleSavePost = async (postId: string, userHasSaved: boolean) => {
+    // TODO: Implement save post functionality
+    const dataToSend = {
+      userId: userLoggedId,
+      formResponseId: postId,
+    };
+    try {
+      if (userHasSaved) {
+        await FormService.unSaveResponseId(dataToSend);
+      } else {
+        await FormService.saveResponseId(dataToSend);
+      }
+      fetchCommunityData();
+    } catch (error) {
+      console.error("Error handling save:");
     }
   };
 
@@ -49,67 +63,96 @@ const Community = () => {
   return (
     <div className="px-4 sm:px-6 lg:px-8">
       <div className="flex flex-col items-center">
-        {communityData.map((item: any) => (
-          <div
-            key={item.id}
-            className="w-full max-w-4xl p-4 mb-6 rounded-xl border "
-          >
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between">
-              <div className="flex items-center mb-4 sm:mb-0">
-                <img
-                  className="h-12 w-12 sm:h-11 sm:w-11 rounded-full"
-                  alt="user-profile"
-                  src={"https://picsum.photos/200/300"}
-                />
-                <div className="ml-3 text-sm leading-tight">
-                  <span className="text-black dark:text-white font-bold block">
-                    {item.user.name}
-                  </span>
-                  <span className="text-gray-500 dark:text-gray-400 font-normal block">
-                    {item.user.email}
-                  </span>
+        {communityData.map((item) => {
+          // TODO check if formResponse has likes already
+          const userHasLiked = item.likes.some(
+            (like: { userId: string }) => like.userId === userLoggedId
+          );
+
+          // TODO check if formResponse has Saves already
+          const userHasSaved = item.savedResponses.some(
+            (bookmark: { userId: string }) => bookmark.userId === userLoggedId
+          );
+
+          return (
+            <div
+              key={item.id}
+              className="w-full max-w-4xl p-4 mb-6 rounded-xl border "
+            >
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between">
+                <div className="flex items-center mb-4 sm:mb-0">
+                  <Image
+                    width={12}
+                    height={12}
+                    className="h-12 w-12 sm:h-11 sm:w-11 rounded-full"
+                    alt="user-profile"
+                    src={`https://picsum.photos/200/300?random=${item.user.id}`}
+                  />
+                  <div className="ml-3 text-sm leading-tight">
+                    <span className="text-black dark:text-white font-bold block">
+                      {item.user.name}
+                    </span>
+                    <span className="text-gray-500 dark:text-gray-400 font-normal block">
+                      {item.user.email}
+                    </span>
+                  </div>
+                </div>
+                <div className="text-gray-700 dark:text-gray-300 text-xs sm:text-sm">
+                  <div className="flex items-center mr-6 mb-2">
+                    <Tag className="w-4 h-4" />
+                    <span className="ml-3">{item.form.slug}</span>
+                  </div>
                 </div>
               </div>
-              <div className="text-gray-700 dark:text-gray-300 text-xs sm:text-sm">
-                <div className="flex items-center mr-6 mb-2">
-                  <Tag className="w-4 h-4" />
-                  <span className="ml-3">{item.form.slug}</span>
+              <p className="text-black dark:text-white text-lg leading-snug mt-3">
+                {item.form_fields_data}
+              </p>
+              <small className="block text-gray-600 dark:text-gray-400 mt-1">
+                {item.form.aiPrompt}
+              </small>
+
+              <div className="mt-2 p-4 rounded-2xl border border-gray-100 dark:border-gray-700">
+                {`${item.responseData.slice(0, 370)}...`}
+              </div>
+
+              <p className="text-gray-500 dark:text-gray-400 text-sm py-1 my-0.5">
+                {moment(item.createdAt).format("LLLL")}
+              </p>
+              <div className="border-gray-200 dark:border-gray-600 border border-b-0 my-1"></div>
+              <div className="text-gray-500 dark:text-gray-400 flex flex-wrap mt-3">
+                <div className="flex items-center mr-4 mb-2">
+                  <div className="heart-bg">
+                    <div
+                      className={`heart-icon ${userHasLiked ? "liked" : ""}`}
+                      onClick={() => handleLikePost(item.id, userHasLiked)}
+                    ></div>
+                  </div>
+                  <span className="pl-3">{item.likes.length}</span>
                 </div>
-              </div>
-            </div>
-            <p className="text-black dark:text-white text-lg leading-snug mt-3">
-              {item.form_fields_data}
-            </p>
-            <small className="block text-gray-600 dark:text-gray-400 mt-1">
-              {item.form.aiPrompt}
-            </small>
 
-            <div className="mt-2 p-4 rounded-2xl border border-gray-100 dark:border-gray-700">
-              {`${item.responseData.slice(0, 370)}...`}
-            </div>
-
-            <p className="text-gray-500 dark:text-gray-400 text-sm py-1 my-0.5">
-              {moment(item.createdAt).format("LLLL")}
-            </p>
-            <div className="border-gray-200 dark:border-gray-600 border border-b-0 my-1"></div>
-            <div className="text-gray-500 dark:text-gray-400 flex flex-wrap mt-3">
-              <div className="flex items-center mr-4 mb-2">
-                <div className="heart-bg">
-                  <div
-                    className={`heart-icon ${userHasLiked ? "liked" : ""}`}
-                    onClick={() => handleLikePost(item)}
-                  ></div>
+                <div
+                  onClick={() => handleSavePost(item.id, userHasSaved)}
+                  className="flex items-center mb-2 cursor-pointer"
+                >
+                  {userHasSaved ? (
+                    <BookmarkFilledIcon className="w-6 h-6" />
+                  ) : (
+                    <BookmarkIcon className="w-6 h-6" />
+                  )}
                 </div>
-                <span className="pl-3">{item.likes.length}</span>
 
-              </div>
-              
-              <div className="flex items-center mb-2">
-                <BookmarkIcon className="w-6 h-6" />
+                {/* <div className="flex items-center mb-2">
+                  <TwitterShareButton
+                    url={window.location.href}
+                    title={item.form_fields_data}
+                  >
+                    <TwitterIcon className="w-6 h-6" />
+                  </TwitterShareButton>
+                </div> */}
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
