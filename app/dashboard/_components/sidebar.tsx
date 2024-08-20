@@ -5,6 +5,7 @@ import {
   PersonIcon,
   ClockIcon,
   DashboardIcon,
+  BookmarkIcon,
 } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { SidebarProps } from "@/src/types";
@@ -14,6 +15,7 @@ const sidebarItems: SidebarProps[] = [
   { label: "dashboard", icon: DashboardIcon, href: "/dashboard" },
   { label: "Community", icon: PersonIcon, href: "/dashboard/community" },
   { label: "History", icon: ClockIcon, href: "/dashboard/history" },
+  { label: "Saved", icon: BookmarkIcon, href: "/dashboard/save-posts" },
   { label: "Settings", icon: GearIcon, href: "/dashboard/settings" },
 ];
 

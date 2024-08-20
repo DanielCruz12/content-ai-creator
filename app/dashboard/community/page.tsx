@@ -8,10 +8,20 @@ import { BookmarkIcon, Tag } from "lucide-react";
 import { useUser } from "@clerk/nextjs";
 import { BookmarkFilledIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
+import Link from "next/link";
 
 const Community = () => {
   const [communityData, setCommunityData] = useState<FormResponse[]>([]);
+  const [expandedItems, setExpandedItems] = useState<{
+    [key: string]: boolean;
+  }>({});
 
+  const toggleExpansion = (id: string) => {
+    setExpandedItems((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
   const user = useUser();
   const userLoggedId = user?.user?.primaryEmailAddress?.id ?? "";
 
@@ -74,6 +84,8 @@ const Community = () => {
             (bookmark: { userId: string }) => bookmark.userId === userLoggedId
           );
 
+          const isExpanded = expandedItems[item.id] ?? false;
+
           return (
             <div
               key={item.id}
@@ -108,11 +120,40 @@ const Community = () => {
                 {item.form_fields_data}
               </p>
               <small className="block text-gray-600 dark:text-gray-400 mt-1">
-                {item.form.aiPrompt}
+                {item.form.aiPrompt}{" "}
+                <Link
+                  href={`/dashboard/content/${item.form.slug}/${item.form.id}`}
+                  className="inline-flex items-center px-3 py-1 text-sm font-medium text-gray-900  rounded-lg hover:bg-gray-100  focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+                >
+                  Try now!{" "}
+                  <svg
+                    className="w-3 h-3 ms-2 rtl:rotate-180"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 14 10"
+                  >
+                    <path
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M1 5h12m0 0L9 1m4 4L9 9"
+                    />
+                  </svg>
+                </Link>
               </small>
 
-              <div className="mt-2 p-4 rounded-2xl border border-gray-100 dark:border-gray-700">
-                {`${item.responseData.slice(0, 370)}...`}
+              <div
+                onClick={() => toggleExpansion(item.id)}
+                className="mt-2 p-4 dark:text-gray-300 rounded-2xl border border-gray-100 dark:border-gray-700"
+              >
+                {isExpanded
+                  ? item.responseData
+                  : `${item.responseData.slice(0, 470)}...`}
+                <button className="dark:text-gray-200  hover:underline dark:hover:text-gray-100 dark:hover:text-bold px-1">
+                  {isExpanded ? "Read less" : "Read more"}
+                </button>
               </div>
 
               <p className="text-gray-500 dark:text-gray-400 text-sm py-1 my-0.5">

@@ -22,6 +22,12 @@ const saveResponseDataAi = async (
   });
 };
 
+const getSavedPostsByUserId = async (userId: string) => {
+  return HttpClient(`/api/v1/formResponse/saved/${userId}`).then((res) => {
+    return res.data;
+  });
+};
+
 const getHistoryByUserAi = async (
   userId: string | undefined
 ): Promise<FormResponse[]> => {
@@ -97,6 +103,7 @@ const FormService = {
   saveResponseId,
   unSaveResponseId,
   createForm,
+  getSavedPostsByUserId,
 };
 
 export default FormService;

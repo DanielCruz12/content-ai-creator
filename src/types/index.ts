@@ -74,7 +74,7 @@ export type Bookmark = {
   userId: string;
 };
 
-export type FormResponse = {
+export type BaseResponse = {
   id: string;
   formId: string;
   userId: string;
@@ -83,6 +83,9 @@ export type FormResponse = {
   form_fields_data: string;
   share_status: boolean;
   isRecommended?: boolean;
+};
+
+export type FormResponse = BaseResponse & {
   form: Form;
   user: User;
   likes: Likes[];
