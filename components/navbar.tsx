@@ -18,13 +18,13 @@ const components: { title: string; href: string; description: string }[] = [
     title: "Home",
     href: "/",
     description:
-      "The main landing page providing an overview and access to other sections.",
+      "The main landing page providing an overview.",
   },
   {
     title: "Dashboard",
     href: "/dashboard",
     description:
-      "A central hub where users can manage and monitor their activities and data.",
+      "A central hub where users can manage and monitor their activities.",
   },
   {
     title: "History",
@@ -37,6 +37,11 @@ const components: { title: string; href: string; description: string }[] = [
     href: "/dashboard/community",
     description:
       "A place for users to interact, share information, and engage with the community.",
+  },
+  {
+    title: "Saved",
+    href: "/dashboard/save-posts",
+    description: "Here you can see the posts you have saved.",
   },
   {
     title: "Settings",

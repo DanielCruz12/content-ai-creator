@@ -42,10 +42,7 @@ const TimeLineCard: FC<TimeLineCardProps> = ({
         >
           <div className="px-3">
             {isExpanded ? description : `${description.slice(0, 470)}...`}
-            <button
-              onClick={toggleExpansion}
-              className="dark:text-gray-200 hover:underline dark:hover:text-gray-100 dark:hover:text-bold px-1"
-            >
+            <button className="dark:text-gray-200 hover:underline dark:hover:text-gray-100 dark:hover:text-bold px-1">
               {isExpanded ? "Read less" : "Read more"}
             </button>
           </div>

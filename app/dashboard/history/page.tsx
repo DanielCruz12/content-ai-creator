@@ -78,11 +78,17 @@ const History = () => {
   }, [userId]);
 
   return (
-    <TimeLine
-      deleteForm={deleteForm}
-      shareForm={handleFormShareToggle}
-      history={history}
-    />
+    <>
+      {history ? (
+        <TimeLine
+          deleteForm={deleteForm}
+          shareForm={handleFormShareToggle}
+          history={history}
+        />
+      ) : (
+        <p>No items created.</p>
+      )}
+    </>
   );
 };
 
