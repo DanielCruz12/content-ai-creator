@@ -49,7 +49,7 @@ export default function Home() {
       </div>
       <div className="mt-5 max-w-3xl text-center mx-auto">
         <p className="md:text-xl text-base text-muted-foreground">
-          DanDevPrompt is a platform where you can find prompts of the community
+          DanDevAI is a platform where you can find prompts of the community
           that you can Share, comment and posts with others sharing your ideas
           and projects.
         </p>
