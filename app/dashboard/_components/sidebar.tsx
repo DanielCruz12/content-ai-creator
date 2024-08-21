@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React from "react";
 import {
   HomeIcon,
@@ -23,8 +24,14 @@ export const Sidebar = () => {
   return (
     <aside className="h-full bg-[#f8f8f8] dark:bg-[#000] border-r border-[#d4d4d4] dark:border-[#000] p-5">
       <div className="mb-5">
-        <div className="text-2xl font-bold text-black dark:text-white">
-          <Link href={"/"}>DanDev</Link>
+        <div className="text-center items-center flex justify-start  font-bold text-black dark:text-white">
+          <Link href={"/"}>
+            <img
+              alt="dan-dev-logo"
+              src="/dandevlogo.png"
+              className="w-16 h-16"
+            />
+          </Link>
         </div>
       </div>
       <nav>
@@ -42,7 +49,7 @@ export const Sidebar = () => {
           ))}
         </ul>
       </nav>
-      {/*  <div className="mt-auto">
+      {/*  <div className="mt-12">
         <Link
           href="#"
           className="flex items-center p-3 rounded hover:bg-[#dedede] dark:hover:bg-[#000]"
