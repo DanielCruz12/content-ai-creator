@@ -144,14 +144,14 @@ const Community = () => {
                 </Link>
               </small>
 
-              <div
-                onClick={() => toggleExpansion(item.id)}
-                className="mt-2 p-4 dark:text-gray-300 rounded-2xl border border-gray-100 dark:border-gray-700"
-              >
+              <div className="mt-2 p-4 dark:text-gray-300 rounded-2xl border border-gray-100 dark:border-gray-700">
                 {isExpanded
                   ? item.responseData
                   : `${item.responseData.slice(0, 470)}...`}
-                <button className="dark:text-gray-200  hover:underline dark:hover:text-gray-100 dark:hover:text-bold px-1">
+                <button
+                  onClick={() => toggleExpansion(item.id)}
+                  className="dark:text-gray-200  hover:underline dark:hover:text-gray-100 dark:hover:text-bold px-1"
+                >
                   {isExpanded ? "Read less" : "Read more"}
                 </button>
               </div>

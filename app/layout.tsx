@@ -10,8 +10,8 @@ import { darkTheme, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
 import { WagmiProvider } from "wagmi";
-import { Analytics } from "@vercel/analytics/react"
-import { config } from "@/src/config/rainbow";
+/* import { Analytics } from "@vercel/analytics/react"
+ */import { config } from "@/src/config/rainbow";
 import "@rainbow-me/rainbowkit/styles.css";
 import "./globals.css";
 
@@ -54,7 +54,7 @@ export default function RootLayout({
                   disableTransitionOnChange
                 >
                   <NextTopLoader />
-                  <Analytics/>
+                {/*   <Analytics/> */}
                   {children}
                   <Toaster />
                 </ThemeProvider>
