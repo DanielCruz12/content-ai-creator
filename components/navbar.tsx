@@ -11,15 +11,17 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import DonatePage from "@/app/donation/page";
 
 const components: { title: string; href: string; description: string }[] = [
-  {
-    title: "Home",
-    href: "/",
-    description:
-      "The main landing page providing an overview.",
-  },
   {
     title: "Dashboard",
     href: "/dashboard",
@@ -51,6 +53,8 @@ const components: { title: string; href: string; description: string }[] = [
 ];
 
 export function Navigation() {
+  const [open, setOpen] = React.useState(false);
+
   return (
     <NavigationMenu>
       <NavigationMenuList>
@@ -68,8 +72,22 @@ export function Navigation() {
                 </ListItem>
               ))}
             </ul>
-            <div className="p-5">
-              <ConnectButton />
+            <div className="px-5 pb-3">
+              <Dialog open={open} onOpenChange={setOpen}>
+                <DialogTrigger asChild>
+                  <button className="text-white bg-gray-600 rounded-xl px-3 py-2 hover:bg-gray-700">
+                    Donate
+                  </button>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle></DialogTitle>
+                    <DialogDescription></DialogDescription>
+                  </DialogHeader>
+
+                  <DonatePage imgSize="w-10/12 h-w-10/12" />
+                </DialogContent>
+              </Dialog>
             </div>
           </NavigationMenuContent>
         </NavigationMenuItem>

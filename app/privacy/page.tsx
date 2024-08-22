@@ -9,7 +9,7 @@ const Privacy = () => {
           <article className="text-gray-400">
             <h2 className="text-xl font-semibold mb-2">1. Introduction</h2>
             <p className="mb-4">
-              At [Project Name], we respect your privacy and are committed to
+              At DevDanAI, we respect your privacy and are committed to
               protecting your personal data. This Privacy Policy explains how we
               collect, use, and share your information when you use our
               services.
