@@ -24,8 +24,8 @@ const TitleSection: React.FC<TitleSectionProps> = ({
             {title}
           </h2>
           <p
-              className='dark:text-gray-500 sm:max-w-[550px]
-              md:text-center
+              className='dark:text-gray-500 max-w-[450px]
+              md:text-center px-3
             '
             >
               {subheading}
