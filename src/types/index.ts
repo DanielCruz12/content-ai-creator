@@ -83,6 +83,7 @@ export type BaseResponse = {
   form_fields_data: string;
   share_status: boolean;
   isRecommended?: boolean;
+  isApproved?: boolean;
 };
 
 export type FormResponse = BaseResponse & {
@@ -109,6 +110,7 @@ export type Template = {
   aiPrompt: string;
   id: string;
   isRecommended?: boolean;
+  isApproved?: boolean;
   icon: string;
   form: FormField[];
 };
