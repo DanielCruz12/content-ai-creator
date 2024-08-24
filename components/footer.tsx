@@ -1,3 +1,4 @@
+import DonatePage from "@/app/donation/page"
 import Link from "next/link"
 
 const Footer = () => {
@@ -28,9 +29,7 @@ const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link href='/donation' className='hover:underline'>
-                Donate
-              </Link>
+              <DonatePage/>
             </li>
           </ul>
         </div>

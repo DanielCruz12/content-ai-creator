@@ -1,18 +1,9 @@
-"use client";
-import { useState } from "react";
+'use client'
 import { ModeToggle } from "@/components/toggle-dark-mode";
 import { Sidebar } from "./_components/sidebar";
 import { Navigation } from "@/components/navbar";
 import { SignedIn, UserButton } from "@clerk/nextjs";
 import AsideContent from "./_components/aside-content";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import DonatePage from "../donation/page";
 /* import { ConnectButton } from "@rainbow-me/rainbowkit";
  */
@@ -21,7 +12,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [open, setOpen] = useState(false);
 
   return (
     <div className="min-h-screen">
@@ -36,21 +26,7 @@ export default function RootLayout({
               <Navigation />
             </div>
             <div className="hidden lg:block">
-              <Dialog open={open} onOpenChange={setOpen}>
-                <DialogTrigger asChild>
-                  <button className="text-white bg-gray-600 rounded-xl px-3 py-2 hover:bg-gray-700">
-                    Donate
-                  </button>
-                </DialogTrigger>
-                <DialogContent>
-                  <DialogHeader>
-                    <DialogTitle></DialogTitle>
-                    <DialogDescription></DialogDescription>
-                  </DialogHeader>
-
-                  <DonatePage imgSize="w-10/12 h-w-10/12" />
-                </DialogContent>
-              </Dialog>
+              <DonatePage />
             </div>
             <ModeToggle />
           </div>

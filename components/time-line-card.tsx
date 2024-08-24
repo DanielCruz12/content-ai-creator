@@ -80,7 +80,7 @@ const TimeLineCard: FC<TimeLineCardProps> = ({
                 className="inline-flex my-3 items-center px-4 py-2 text-sm font-medium rounded-lg"
               >
                 {status ? <SymbolIcon /> : <Share2Icon />}
-                <p className="px-2">{status ? "Unshare" : "Shares"}</p>
+                <p className="px-2">{status ? "Unshare" : "Share"}</p>
               </Button>
             </DialogTrigger>
             <DialogContent>
