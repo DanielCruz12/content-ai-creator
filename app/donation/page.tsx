@@ -1,52 +1,58 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import { useState } from "react";
 
-const DonatePage = ({ imgSize }: any) => {
-  const [copied, setCopied] = useState(false);
-  const walletAddress =
-    "lnbc1pnv08hxpp5srcmv0fxhmlz6yneraxgcgez632q7q6czwkhkukanjunvwz5v2ysdp82pshjgr5dusyymrfde4jq4mpd3kx2apq24ek2uscqzpuxqyz5vqsp5hpg6zyxu6ykr52p6l3x7n3wzy367lfvay47lfr3mj9ulyk6kf9sq9qxpqysgq42dhp6krefyhk7pxd7qcw4w08lkpnvcy9uzcn6lqd9ljf2zklpjjxtj4enc2u6q02pl26wcpz474rqjtwkv4uynx6g6j38w8du3jspgq64lj2q";
-
-  const truncatedAddress = `${walletAddress.slice(0, 10)}....${walletAddress.slice(-10)}`;
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText(walletAddress);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
+const DonatePage = () => {
   return (
-    <div className="flex items-center justify-center p-4 sm:p-6">
-      <div className="w-full max-w-md bg-gray-50 rounded-lg shadow-lg p-4 sm:p-6">
-        <h1 className="text-2xl font-bold text-center text-gray-800">
-          Support DanDev
-        </h1>
-        <p className="mt-4 text-center text-gray-600">
-          Your support helps me continue building amazing things. Any
-          contribution is greatly appreciated!
-        </p>
-        <div className="flex justify-center mt-6">
+    <div className="flex items-center justify-center">
+      <form
+        method="POST"
+        action="https://btcpay.btc.aw/api/v1/invoices"
+        className="btcpay-form btcpay-form--block"
+      >
+        <input
+          type="hidden"
+          name="storeId"
+          value="76BbH4suufHYMobjam8DYHVqAEsWsH69CnsAdjZXQyHc"
+        />
+        <input
+          type="hidden"
+          name="checkoutDesc"
+          value="With this contribution you are going to send bitcoin to devdan to help him continue developing"
+        />
+        <input
+          type="hidden"
+          name="notifyEmail"
+          value="danieldubonxd@gmail.com"
+        />
+        <input type="hidden" name="currency" value="BTC" />
+        <input type="hidden" name="defaultPaymentMethod" value="BTC_LNURLPAY" />
+        <button
+          type="submit"
+          className="submit"
+          name="submit"
+          style={{
+            minWidth: "146px",
+            minHeight: "40px",
+            borderRadius: "4px",
+            borderStyle: "none",
+            backgroundColor: "#0f3b21",
+            cursor: "pointer",
+          }}
+          title="Pay with BTCPay Server, a Self-Hosted Bitcoin Payment Processor"
+        >
+          <span style={{ color: "#fff" }}>Donate with</span>
           <img
-            src="/image.png"
-            alt="QR Code"
-            className={imgSize ? imgSize : "w-full h-full"}
+            src="https://btcpay.btc.aw/img/paybutton/logo.svg"
+            alt="BTCPay Server Logo"
+            style={{
+              height: "40px",
+              display: "inline-block",
+              padding: "5% 0 5% 5px",
+              verticalAlign: "middle",
+            }}
           />
-        </div>
-        <div className="mt-6 text-center">
-          <p className="text-gray-700">Or send to my wallet address:</p>
-          <div className="flex flex-col items-center justify-center mt-2 sm:flex-row sm:items-center">
-            <span className="px-3 py-1 font-mono text-sm text-black bg-gray-200 rounded mb-2 sm:mb-0 sm:mr-3">
-              {truncatedAddress}
-            </span>
-            <button
-              onClick={handleCopy}
-              className="text-sm font-medium text-white bg-gray-600 rounded-lg px-3 py-1 hover:bg-gray-700"
-            >
-              {copied ? "Copied!" : "Copy"}
-            </button>
-          </div>
-        </div>
-      </div>
+        </button>
+      </form>
     </div>
   );
 };

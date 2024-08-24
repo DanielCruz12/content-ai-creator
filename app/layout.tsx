@@ -12,7 +12,7 @@ import { Toaster } from "react-hot-toast";
 import { WagmiProvider } from "wagmi";
 /* import { Analytics } from "@vercel/analytics/react"
  */
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { config } from "@/src/config/rainbow";
 import "@rainbow-me/rainbowkit/styles.css";
 import "./globals.css";
@@ -30,12 +30,9 @@ export default function RootLayout({
   const queryClient = useMemo(() => new QueryClient(), []);
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning={true}>
       <body
-        className={cn(
-          "min-h-screen font-sans antialiased",
-          fontSans.variable
-        )}
+        className={cn("min-h-screen font-sans antialiased", fontSans.variable)}
       >
         <ClerkProvider
           appearance={{
@@ -57,7 +54,7 @@ export default function RootLayout({
                 >
                   <SpeedInsights />
                   <NextTopLoader />
-                {/*   <Analytics/> */}
+                  {/*   <Analytics/> */}
                   {children}
                   <Toaster />
                 </ThemeProvider>

@@ -40,7 +40,7 @@ export default function Home() {
         <TitleSection
           title="Let's build and share Together"
           subheading="DanDevAI is a platform where you can find prompts of the community
-          that you can Share, comment and posts with others sharing your ideas
+          that you can share, comment and posts with others sharing your ideas
           and projects."
           pill="Beta version"
         />
@@ -151,19 +151,17 @@ export default function Home() {
         />
         <TitleSection
           title="Hey 👋 I am Daniel Cruz"
-          subheading="CEO of DanDev Company, a software and AI-focused firm,"
+          subheading="CEO of DanDev Company"
           pill="About me"
         />
-        <span className="text-sm max-w-2xl text-center">
-          I lead our efforts in harnessing the power of AI and software
-          development to create innovative solutions. Our latest platform,
-          DanDevAI, is a dynamic space where the community can discover, share,
-          and discuss creative prompts.
+        <span className="text-sm pt-3 px-10 text-center">
+          I lead our efforts in the power of AI and software development to
+          create innovative solutions.
         </span>
-        <p className="mt-4 text-xl text-gray-600 dark:text-gray-300 md:mt-8">
+        <p className=" text-xl text-gray-600 dark:text-gray-300">
           <span className="relative inline-block">
             <span className="absolute inline-block w-full bottom-0.5 h-2 bg-yellow-300 dark:bg-gray-900"></span>
-            <span className="relative"> Have a question? </span>
+            <span className="relative"> Have a question?{" "} </span>
           </span>
           <br className="block sm:hidden" />
           Ask me on{" "}
