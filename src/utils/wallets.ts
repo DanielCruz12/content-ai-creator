@@ -1,4 +1,4 @@
-import { intmaxwalletsdk } from "intmax-walletsdk/rainbowkit";
+/* import { intmaxwalletsdk } from "intmax-walletsdk/rainbowkit";
 
 export const wallets = [
   intmaxwalletsdk({
@@ -54,3 +54,4 @@ export const additionalWallets = [
     },
   }),
 ];
+ */
