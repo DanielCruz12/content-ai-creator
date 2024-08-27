@@ -222,3 +222,20 @@
 .form-control:hover {
 	box-shadow: 5px 5px 20px rgba(122, 122, 122, 0.4);
 }
+
+/* BtcpayForm.module.css */
+.btcpayForm {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.submit {
+  width: 146px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* Add any other styles from your original CSS here */
