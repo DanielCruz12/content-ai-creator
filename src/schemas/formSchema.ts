@@ -10,8 +10,7 @@ const createFormSchema = Yup.object().shape({
     .required("Category is required")
     .min(3, "Category must be at least 3 characters long"),
   icon: Yup.string()
-    .required("Icon is required")
-    .url("Icon must be a valid URL"),
+    .required("Icon is required"),
   slug: Yup.string().required("Slug is required"),
   aiPrompt: Yup.string()
     .required("AI Prompt is required")

@@ -91,8 +91,15 @@ const unSaveResponseId = async (data: any) => {
   });
 };
 
+const saveFileS3 = async (data: any) => {
+  return HttpClient(`api/v1/file/upload`, data, "post").then((res) => {
+    return res as any
+  });
+};
+
 const FormService = {
   getFormsAi,
+  createForm,
   deleteHistoryResponseById,
   getHistoryByUserAi,
   saveResponseDataAi,
@@ -101,8 +108,8 @@ const FormService = {
   likeResponseId,
   unLikeResponseId,
   saveResponseId,
+  saveFileS3,
   unSaveResponseId,
-  createForm,
   getSavedPostsByUserId,
 };
 

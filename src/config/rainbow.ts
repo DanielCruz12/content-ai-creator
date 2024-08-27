@@ -1,4 +1,4 @@
-import { connectorsForWallets } from "@rainbow-me/rainbowkit";
+/* import { connectorsForWallets } from "@rainbow-me/rainbowkit";
 import { createConfig, http } from "wagmi";
 import { mainnet, polygon, optimism, arbitrum } from "wagmi/chains";
 import { wallets } from "../utils/wallets";
@@ -23,3 +23,4 @@ export const config = createConfig({
   },
   connectors,
 });
+ */

@@ -1,6 +1,6 @@
 "use client";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
@@ -11,10 +11,12 @@ import { BarLoader } from "react-spinners";
 import { useRouter } from "next/navigation";
 import { formSchema } from "@/src/schemas/formSchema";
 import type { CreateFormData, FormField, Tool } from "@/src/types";
+import { FormFile } from "@/components/file-upload-form";
 
 const TemplateForm = () => {
   const user = useUser();
   const [loading, setLoading] = useState(false);
+  const files = useRef<HTMLInputElement>(null);
   const navigate = useRouter();
 
   const initialValues: Tool = {
@@ -39,7 +41,7 @@ const TemplateForm = () => {
       label: "Category",
       placeholder: "Your template category",
     },
-    { name: "icon", label: "Icon", placeholder: "Icon URL or name" },
+
     { name: "slug", label: "Slug", placeholder: "URL-friendly identifier" },
     {
       name: "aiPrompt",
@@ -52,18 +54,53 @@ const TemplateForm = () => {
       label: "Placeholder",
       placeholder: "Input placeholder",
     },
+    {
+      name: "icon",
+      label: "Icon",
+      placeholder: "Icon URL or name",
+      fieldType: "file",
+    },
   ];
 
+  const handleFileUpload = async (
+    files: FileList | null | undefined
+  ): Promise<string | null> => {
+    if (!files || files.length === 0) {
+      toast.error("Please upload an icon file.");
+      return null;
+    }
+
+    const formData = new FormData();
+    Array.from(files).forEach((file) => {
+      formData.append("files", file);
+    });
+
+    try {
+      const res = await FormService.saveFileS3(formData);
+      return res.data.files[0].s3Location;
+    } catch (error) {
+      console.error("Error uploading file:", error);
+      toast.error("Failed to upload file. Please try again.");
+      return null;
+    }
+  };
+
   const handleSubmit = async (values: any) => {
-    //* TODO: Save template to the database
-    if (!values && !user) return;
+    if (!values || !user) return;
+
+    //* Access the files from the ref
+    const documents = files.current?.files;
+
+    //* Upload the file and get the S3 URL
+    const s3UrlFile = await handleFileUpload(documents);
+    if (!s3UrlFile) return;
 
     const valuesToSend: CreateFormData = {
       userId: user?.user?.primaryEmailAddress?.id ?? "",
       name: values.name,
       description: values.description,
       category: values.category,
-      icon: values.icon,
+      icon: s3UrlFile,
       slug: values.slug,
       aiPrompt: values.aiPrompt,
       fields: [
@@ -85,16 +122,15 @@ const TemplateForm = () => {
         style: { backgroundColor: "#e7e6e6" },
       });
       navigate.push("/dashboard");
-      setLoading(false);
     } catch (error) {
+      console.error("Error creating form:", error);
       toast.error("Failed to create form-template", {
         position: "bottom-center",
         style: { backgroundColor: "#e7e6e6" },
       });
+    } finally {
       setLoading(false);
-      console.log(error);
     }
-    setLoading(false);
   };
 
   return (
@@ -124,14 +160,19 @@ const TemplateForm = () => {
                 <label className="block text-gray-600 dark:text-gray-300 text-sm font-medium mb-2">
                   {field.name}
                 </label>
-                <Field
-                  key={field.name}
-                  name={field.name}
-                  type={"text"}
-                  as={Input}
-                  placeholder={field.placeholder}
-                  className="mb-2"
-                />
+                {field.fieldType === "file" ? (
+                  <FormFile name="icon" fileRef={files} />
+                ) : (
+                  <Field
+                    key={field.name}
+                    name={field.name}
+                    type={field.fieldType}
+                    as={Input}
+                    placeholder={field.placeholder}
+                    className="mb-2"
+                  />
+                )}
+
                 <ErrorMessage
                   name={field.name}
                   component="div"

@@ -98,7 +98,8 @@ export type FormField = {
   label: string;
   placeholder?: string;
   field?: string;
-  fieldType?: "text" | "textarea";
+  multiple?: boolean;
+  fieldType?: "text" | "textarea" | "file";
   required?: boolean;
 };
 

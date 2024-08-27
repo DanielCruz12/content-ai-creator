@@ -6,15 +6,14 @@ import { ThemeProvider } from "../components/theme-provider";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 import NextTopLoader from "nextjs-toploader";
-import { darkTheme, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
-import { WagmiProvider } from "wagmi";
-/* import { Analytics } from "@vercel/analytics/react"
- */
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { config } from "@/src/config/rainbow";
-import "@rainbow-me/rainbowkit/styles.css";
+/* import { config } from "@/src/config/rainbow";
+import { darkTheme, RainbowKitProvider } from "@rainbow-me/rainbowkit";
+ import { Analytics } from "@vercel/analytics/react"
+import { WagmiProvider } from "wagmi";
+import "@rainbow-me/rainbowkit/styles.css"; */
 import "./globals.css";
 
 const fontSans = FontSans({
@@ -43,24 +42,24 @@ export default function RootLayout({
             },
           }}
         >
-          <WagmiProvider config={config}>
-            <QueryClientProvider client={queryClient}>
-              <RainbowKitProvider coolMode theme={darkTheme()}>
-                <ThemeProvider
-                  attribute="class"
-                  defaultTheme="system"
-                  enableSystem
-                  disableTransitionOnChange
-                >
-                  <SpeedInsights />
-                  <NextTopLoader />
-                  {/*   <Analytics/> */}
-                  {children}
-                  <Toaster />
-                </ThemeProvider>
-              </RainbowKitProvider>
-            </QueryClientProvider>
-          </WagmiProvider>
+          {/*    <WagmiProvider config={config}> */}
+          <QueryClientProvider client={queryClient}>
+            {/*  <RainbowKitProvider coolMode theme={darkTheme()}> */}
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <SpeedInsights />
+              <NextTopLoader />
+              {/*   <Analytics/> */}
+              {children}
+              <Toaster />
+            </ThemeProvider>
+            {/*  </RainbowKitProvider> */}
+          </QueryClientProvider>
+          {/* </WagmiProvider> */}
         </ClerkProvider>
       </body>
     </html>
