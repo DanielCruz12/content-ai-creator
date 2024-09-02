@@ -238,4 +238,9 @@
   cursor: pointer;
 }
 
+::placeholder {
+  color: red;
+  opacity: 1; /* Firefox */
+}
+
 /* Add any other styles from your original CSS here */

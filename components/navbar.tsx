@@ -11,7 +11,16 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import DonatePage from "@/app/donation/page";
+
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import LightningWidget from "@/app/donation/page";
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -45,6 +54,7 @@ const components: { title: string; href: string; description: string }[] = [
 ];
 
 export function Navigation() {
+  const [open, setOpen] = React.useState(false);
   return (
     <NavigationMenu>
       <NavigationMenuList>
@@ -62,8 +72,24 @@ export function Navigation() {
                 </ListItem>
               ))}
             </ul>
-            <div className="px-5 pb-3">
-              <DonatePage />
+            <div className="p-5">
+              <div className="px-5 pb-3">
+                <Dialog open={open} onOpenChange={setOpen}>
+                  <DialogTrigger asChild>
+                    <button className="text-white bg-gray-600 rounded-xl px-3 py-2 hover:bg-gray-700">
+                      Donate
+                    </button>
+                  </DialogTrigger>
+                  <DialogContent>
+                    <DialogHeader>
+                      <DialogTitle></DialogTitle>
+                      <DialogDescription></DialogDescription>
+                    </DialogHeader>
+
+                    <LightningWidget />
+                  </DialogContent>
+                </Dialog>
+              </div>
             </div>
           </NavigationMenuContent>
         </NavigationMenuItem>
