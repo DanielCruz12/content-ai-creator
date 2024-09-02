@@ -1,11 +1,11 @@
 "use client";
 import React from "react";
-import Link from "next/link";
-import { SearchList } from "./search-list";
+/* import Link from "next/link";
+ */import { SearchList } from "./search-list";
 import { CardDemo } from "./card-list";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Button } from "@/components/ui/button";
-import { TemplateListProps, Tool } from "@/src/types";
+/* import { Button } from "@/components/ui/button";
+ */import { TemplateListProps, Tool } from "@/src/types";
 
 export const TemplateList: React.FC<TemplateListProps> = ({ templates }) => {
   const [inputValueSearch, setInputValueSearch] = React.useState("");
@@ -31,11 +31,11 @@ export const TemplateList: React.FC<TemplateListProps> = ({ templates }) => {
       </div>
       {}
 
-      <Link href={"/dashboard/create-form"}>
+     {/*  <Link href={"/dashboard/create-form"}>
         <Button type="button" variant={"secondary"}>
           Create template
         </Button>
-      </Link>
+      </Link> */}
 
       {templateList.length > 0 ? (
         <div className="grid grid-rows-1 grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 pt-3">

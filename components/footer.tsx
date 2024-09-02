@@ -1,7 +1,17 @@
-import DonatePage from "@/app/donation/page"
+'use client'
 import Link from "next/link"
-
+import { useState } from "react"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import LightningWidget from "@/app/donation/page";
 const Footer = () => {
+  const [open, setOpen] = useState(false)
     return (
       <footer className='bg-[#141419] rounded-l shadow mt-8'>
         <div className='mx-auto w-full max-w-screen-xl p-4 md:flex md:items-center md:justify-between'>
@@ -28,10 +38,25 @@ const Footer = () => {
                 Licensing
               </Link>
             </li>
-            <li>
-              <DonatePage/>
-            </li>
+            
           </ul>
+          <div className="px-5 pb-3">
+                <Dialog open={open} onOpenChange={setOpen}>
+                  <DialogTrigger asChild>
+                    <button className="text-white bg-gray-600 rounded-xl px-3 py-2 hover:bg-gray-700">
+                      Donate
+                    </button>
+                  </DialogTrigger>
+                  <DialogContent>
+                    <DialogHeader>
+                      <DialogTitle></DialogTitle>
+                      <DialogDescription></DialogDescription>
+                    </DialogHeader>
+
+                    <LightningWidget />
+                  </DialogContent>
+                </Dialog>
+              </div>
         </div>
       </footer>
     )
