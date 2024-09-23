@@ -11,7 +11,6 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import { Icons } from "@/components/ui/Icons";
-import { SignInWithMetamaskButton } from "@clerk/nextjs";
 
 export default function SignInPage() {
   return (
@@ -146,7 +145,7 @@ export default function SignInPage() {
                                 </Button>
                               </Clerk.Connection>
 
-                              <div className="grid grid-cols-1">
+                             {/*  <div className="grid grid-cols-1">
                                 <SignInWithMetamaskButton mode="modal">
                                   <Button
                                     size="sm"
@@ -168,7 +167,7 @@ export default function SignInPage() {
                                     </Clerk.Loading>
                                   </Button>
                                 </SignInWithMetamaskButton>
-                              </div>
+                              </div> */}
                             </div>
                           </CardContent>
                           {/*  <CardFooter>
