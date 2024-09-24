@@ -1,4 +1,3 @@
-import { useMemo } from "react";
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 import { cn } from "@/lib/utils";
@@ -6,7 +5,6 @@ import { ThemeProvider } from "../components/theme-provider";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 import NextTopLoader from "nextjs-toploader";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
 
@@ -31,18 +29,10 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: "website",
-    url: "https://dandevai.com", // Adjust the URL to your actual domain
+    url: "https://dandevcreator.com", // Adjust the URL to your actual domain
     title: "DanDevAI | Share AI Prompts, Ideas, and Projects",
     description:
       "Discover and share community AI prompts, collaborate on ideas, and manage AI-generated content all in one place with DanDevAI.",
-    images: [
-      {
-        url: "https://dandevai.com/og-image.png", // Replace with an appropriate image
-        width: 1200,
-        height: 630,
-        alt: "DanDevAI - AI Content Creation Platform",
-      },
-    ],
   },
 };
 
@@ -51,8 +41,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const queryClient = useMemo(() => new QueryClient(), []);
-
   return (
     <html lang="en" suppressHydrationWarning={true}>
       <body
@@ -67,18 +55,16 @@ export default function RootLayout({
             },
           }}
         >
-          <QueryClientProvider client={queryClient}>
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="system"
-              enableSystem
-              disableTransitionOnChange
-            >
-              <NextTopLoader />
-              {children}
-              <Toaster />
-            </ThemeProvider>
-          </QueryClientProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <NextTopLoader />
+            {children}
+            <Toaster />
+          </ThemeProvider>
         </ClerkProvider>
       </body>
     </html>
