@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.dandevcreator.com
+
+# Sitemaps
+Sitemap: https://www.dandevcreator.com/sitemap.xml

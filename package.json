@@ -1,5 +1,5 @@
 {
-  "name": "content-creator",
+  "name": "dandev-content-creator",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -54,6 +54,7 @@
     "react-spinners": "^0.14.1",
     "simplebar-react": "^3.2.4",
     "tailwind-merge": "^2.4.0",
+    "next-sitemap": "^4.2.3",
     "tailwindcss-animate": "^1.0.7",
     "yup": "^1.4.0"
   },
