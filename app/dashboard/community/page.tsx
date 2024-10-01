@@ -102,11 +102,11 @@ const Community = () => {
                   />
                   <div className="ml-3 text-sm leading-tight">
                     <span className="text-black dark:text-white font-bold block">
-                      {item.user.name}
+                      {item.user.name} creator
                     </span>
-                    <span className="text-gray-500 dark:text-gray-400 font-normal block">
+                    {/*  <span className="text-gray-500 dark:text-gray-400 font-normal block">
                       {item.user.email}
-                    </span>
+                    </span> */}
                   </div>
                 </div>
                 <div className="text-gray-700 dark:text-gray-300 text-xs sm:text-sm">
