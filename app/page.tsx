@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
-import { SignUp, SignedOut } from "@clerk/nextjs";
 import { cookies } from "next/headers";
 import { ChevronRightIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -13,29 +12,6 @@ export default function Home() {
 
   return (
     <div className="relative overflow-hidden md:pt-24 lg:pt-26">
-      {/*  <>
-        {showModal ? (
-          <>
-            <div className="z-50 fixed top-0 left-0 right-0 bottom-0 flex items-center w-full h-full p-4 bg-gray-800 bg-opacity-80 overflow-y-auto">
-              <div className="mx-auto text-end rounded-xl overflow-hidden">
-                <button
-                  onClick={() => setShowModal(false)}
-                  className="text-white pb-4 text-[1.1rem]"
-                >
-                  Cerrar
-                </button>
-                <ReactPlayer
-                  width="90vw"
-                  url="https://www.youtube.com/watch?v=wQrN_JNxBDQ"
-                  controls
-                />
-              </div>
-            </div>
-          </>
-        ) : (
-          <></>
-        )}
-      </> */}
       <div className=" pt-10 text-center mx-5">
         <TitleSection
           title="Let's build and share Together"
@@ -70,9 +46,9 @@ export default function Home() {
             <Button>Dashboard</Button>
           </Link>
         ) : (
-          <SignedOut>
-            <SignUp />
-          </SignedOut>
+          <Link href={"/sign-up "}>
+            <Button variant={"outline"}>Sign up</Button>
+          </Link>
         )}
 
         <Button size={"lg"} className="" disabled variant={"outline"}>

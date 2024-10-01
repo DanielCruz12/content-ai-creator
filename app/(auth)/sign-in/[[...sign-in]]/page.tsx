@@ -173,6 +173,13 @@ export default function SignInPage() {
                               </Button>
                             </div>
                           </CardFooter> */}
+                          <div className="pb-3 text-center">
+                            <Button variant="link" size="sm" asChild>
+                              <Link href="/sign-up">
+                                Do you want to register? Sign up
+                              </Link>
+                            </Button>
+                          </div>
                         </Card>
                       </SignIn.Step>
                     </>
