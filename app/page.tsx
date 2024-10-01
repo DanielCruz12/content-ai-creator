@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
-import { SignUpButton, SignedOut } from "@clerk/nextjs";
+import { SignUp, SignedOut } from "@clerk/nextjs";
 import { cookies } from "next/headers";
 import { ChevronRightIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -71,7 +71,7 @@ export default function Home() {
           </Link>
         ) : (
           <SignedOut>
-            <SignUpButton />
+            <SignUp />
           </SignedOut>
         )}
 
