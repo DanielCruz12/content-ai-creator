@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
-import { SignInButton, SignedOut } from "@clerk/nextjs";
+import { SignUpButton, SignedOut } from "@clerk/nextjs";
 import { cookies } from "next/headers";
 import { ChevronRightIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -71,7 +71,7 @@ export default function Home() {
           </Link>
         ) : (
           <SignedOut>
-            <SignInButton />
+            <SignUpButton />
           </SignedOut>
         )}
 
@@ -161,7 +161,7 @@ export default function Home() {
         <p className=" text-xl text-gray-600 dark:text-gray-300">
           <span className="relative inline-block">
             <span className="absolute inline-block w-full bottom-0.5 h-2 bg-yellow-300 dark:bg-gray-900"></span>
-            <span className="relative"> Have a question?{" "} </span>
+            <span className="relative"> Have a question? </span>
           </span>
           <br className="block sm:hidden" />
           Ask me on{" "}
