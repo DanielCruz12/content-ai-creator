@@ -56,7 +56,7 @@ const CreateNewContent: React.FC<CreateNewContentProps> = ({ params }) => {
         style: { backgroundColor: "#e7e6e6" },
       });
       const dataToSend: SaveResponseData = {
-        userId: user?.user?.primaryEmailAddress?.id ?? "",
+        userId: user.user?.emailAddresses[0].id ?? "",
         responseData: result.response.text(),
         share_status: false,
         formId: params.id,
