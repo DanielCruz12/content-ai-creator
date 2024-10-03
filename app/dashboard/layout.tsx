@@ -2,7 +2,6 @@
 import { ModeToggle } from "@/components/toggle-dark-mode";
 import { Sidebar } from "./_components/sidebar";
 import { Navigation } from "@/components/navbar";
-import { SignedIn, UserButton } from "@clerk/nextjs";
 import AsideContent from "./_components/aside-content";
 import {
   Dialog,
@@ -14,12 +13,26 @@ import {
 } from "@/components/ui/dialog";
 import LightningWidget from "@/app/donation/page";
 import { useState } from "react";
+import { useClerk, useUser } from "@clerk/nextjs";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { LogOut, Settings } from "lucide-react";
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   const [open, setOpen] = useState(false);
+  const { signOut, openUserProfile } = useClerk();
+  const { user } = useUser();
+  console.log(user?.imageUrl);
+
   return (
     <div className="min-h-screen">
       <aside className="fixed hidden lg:block top-0 left-0 w-[250px] h-screen p-4 z-20">
@@ -32,20 +45,19 @@ export default function RootLayout({
             <div className="block lg:hidden">
               <Navigation />
             </div>
-            <div className="hidden  lg:block">
+            <div className="hidden lg:block">
               <div className="px-5 min-w-full w-full">
-                <Dialog  open={open} onOpenChange={setOpen}>
+                <Dialog open={open} onOpenChange={setOpen}>
                   <DialogTrigger asChild>
                     <button className="text-white bg-gray-600 rounded-xl px-3 py-2 hover:bg-gray-700">
                       Donate
                     </button>
                   </DialogTrigger>
-                  <DialogContent className=" w-full max-w-4xl ">
+                  <DialogContent className="w-full max-w-4xl">
                     <DialogHeader>
                       <DialogTitle></DialogTitle>
                       <DialogDescription></DialogDescription>
                     </DialogHeader>
-
                     <LightningWidget />
                   </DialogContent>
                 </Dialog>
@@ -53,9 +65,44 @@ export default function RootLayout({
             </div>
             <ModeToggle />
           </div>
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
+
+          <DropdownMenu modal={false}>
+            <DropdownMenuTrigger asChild>
+              <button className="flex items-center space-x-2">
+                <Avatar className="w-8 h-8">
+                  <AvatarImage src={user?.imageUrl} alt="User Avatar" />
+                  <AvatarFallback>{user?.firstName?.[0]}</AvatarFallback>
+                </Avatar>
+              </button>
+            </DropdownMenuTrigger>
+
+            <DropdownMenuContent className="w-72 " align="end">
+              <DropdownMenuItem className="flex items-center space-x-2">
+                <Avatar className="w-8 h-8">
+                  <AvatarImage src={user?.imageUrl} alt="User Avatar" />
+                  <AvatarFallback>{user?.firstName?.[0]}</AvatarFallback>
+                </Avatar>
+                <div className="flex flex-col">
+                  <span>{user?.fullName}</span>
+                  <span className="text-muted-foreground">
+                    {user?.emailAddresses[0].emailAddress}
+                  </span>
+                </div>
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                className="flex items-center space-x-2 px-3 py-2"
+                onClick={() => openUserProfile()}
+              >
+                <Settings className="w-4 h-4 mr-2" /> Manage account
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                className="flex items-center space-x-2 px-3 py-2 mb-3"
+                onClick={() => signOut()}
+              >
+                <LogOut className="w-4 h-4 mr-2" /> Sign out
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </header>
 
         <div className="mt-4 flex-1 overflow-y-auto">{children}</div>
