@@ -40,7 +40,7 @@ const Footer = () => {
             </li>
             
           </ul>
-          <div className="px-5 pb-3">
+          <div className="px-0 my-2 md:my-0 md:px-5 pb-3">
                 <Dialog open={open} onOpenChange={setOpen}>
                   <DialogTrigger asChild>
                     <button className="text-white bg-gray-600 rounded-xl px-3 py-2 hover:bg-gray-700">

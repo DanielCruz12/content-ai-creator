@@ -145,7 +145,7 @@ export default function Home() {
             href="https://x.com/Daniel_CruzD"
             target="_blank"
             title="daniel-cruz"
-            className="transition-all duration-200 text-sky-500 dark:text-sky-400 hover:text-sky-600 dark:hover:text-sky-500 hover:underline"
+            className="transition-all duration-200  dark:text-sky-400 hover:text-sky-600  hover:underline"
           >
             Twitter
           </a>
