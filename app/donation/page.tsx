@@ -19,7 +19,7 @@ const LightningWidget = () => {
       style={{ height: "auto", width: "auto" }}
       dangerouslySetInnerHTML={{
         __html: `<lightning-widget
-                   name="Daniel Cruz 🫡🤖⚡▶︎ •၊၊||၊|။||||| 0:22 "
+                   name="Daniel Cruz 🫡🤖⚡"
                    to="dandubua@blink.sv"
                    image="https://i.ibb.co/vXrKS2v/Imagen-de-Whats-App-2024-09-02-a-las-15-49-13-109092b5.jpg"
                    labels="🍬, ☕, 🍕"
