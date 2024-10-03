@@ -11,6 +11,7 @@ import Link from "next/link";
 
 const SaveResults = () => {
   const [communityData, setCommunityData] = useState<FormResponse[]>([]);
+  const [userId, setUserId] = useState<string | null>(null); // Estado para almacenar el userId
   const [expandedItems, setExpandedItems] = useState<{
     [key: string]: boolean;
   }>({});
@@ -21,7 +22,12 @@ const SaveResults = () => {
       [id]: !prev[id],
     }));
   };
-  const userId = localStorage.getItem("userId");
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setUserId(localStorage.getItem("userId"));
+    }
+  }, []);
+
   const savedPosts = communityData.filter((item) =>
     item.savedResponses.some((bookmark) => bookmark.userId === userId)
   );
@@ -106,9 +112,6 @@ const SaveResults = () => {
                       <span className="text-black dark:text-white font-bold block">
                         {item.user.name}
                       </span>
-                      <span className="text-gray-500 dark:text-gray-400 font-normal block">
-                        {item.user.email}
-                      </span>
                     </div>
                   </div>
                   <div className="text-gray-700 dark:text-gray-300 text-xs sm:text-sm">
@@ -147,15 +150,19 @@ const SaveResults = () => {
                 </small>
 
                 <div className="mt-2 p-4 dark:text-gray-300 rounded-2xl border border-gray-100 dark:border-gray-700">
-                  {isExpanded
-                    ? item.responseData
-                    : `${item.responseData.slice(0, 470)}...`}
-                  <button
-                    onClick={() => toggleExpansion(item.id)}
-                    className="dark:text-gray-200  hover:underline dark:hover:text-gray-100 dark:hover:text-bold px-1"
-                  >
-                    {isExpanded ? "Read less" : "Read more"}
-                  </button>
+                  {item.responseData.length > 470
+                    ? isExpanded
+                      ? item.responseData
+                      : `${item.responseData.slice(0, 470)}...`
+                    : item.responseData}
+                  {item.responseData.length > 470 && (
+                    <button
+                      onClick={() => toggleExpansion(item.id)}
+                      className="dark:text-gray-200 hover:underline dark:hover:text-gray-100 dark:hover:text-bold px-1"
+                    >
+                      {isExpanded ? "Read less" : "Read more"}
+                    </button>
+                  )}
                 </div>
 
                 <p className="text-gray-500 dark:text-gray-400 text-sm py-1 my-0.5">

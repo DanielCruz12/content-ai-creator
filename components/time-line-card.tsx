@@ -59,13 +59,19 @@ const TimeLineCard: FC<TimeLineCardProps> = ({
         <p className="pb-2">{slug}</p>
         <div className="text-xs py-5 italic font-normal dark:text-gray-300 border rounded-lg cursor-pointer">
           <div className="px-3">
-            {isExpanded ? description : `${description.slice(0, 470)}...`}
-            <button
-              onClick={toggleExpansion}
-              className="dark:text-gray-200 hover:underline dark:hover:text-gray-100 dark:hover:text-bold px-1"
-            >
-              {isExpanded ? "Read less" : "Read more"}
-            </button>
+            {description.length > 470
+              ? isExpanded
+                ? description
+                : `${description.slice(0, 470)}...`
+              : description}
+            {description.length > 470 && (
+              <button
+                onClick={toggleExpansion}
+                className="dark:text-gray-200 hover:underline dark:hover:text-gray-100 dark:hover:text-bold px-1"
+              >
+                {isExpanded ? "Read less" : "Read more"}
+              </button>
+            )}
           </div>
         </div>
         <div>
