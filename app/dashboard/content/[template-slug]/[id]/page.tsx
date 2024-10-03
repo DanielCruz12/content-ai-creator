@@ -35,6 +35,9 @@ const CreateNewContent: React.FC<CreateNewContentProps> = ({ params }) => {
 
   // Retorna el id del usuario encontrado o null si no se encuentra coincidencia
   const userId = matchedUser ? matchedUser.id : null;
+  if (typeof window !== 'undefined') {
+    localStorage.setItem('userId', userId);
+  }
 
   const selectedTemplate = data.find(
     (item) => item.slug === params["template-slug"]

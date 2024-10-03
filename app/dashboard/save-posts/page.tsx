@@ -5,7 +5,6 @@ import React, { useEffect, useState } from "react";
 import FormService from "@/src/services/formServices";
 import type { FormResponse } from "@/src/types";
 import { BookmarkIcon, Tag } from "lucide-react";
-import { useUser } from "@clerk/nextjs";
 import { BookmarkFilledIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
 import Link from "next/link";
@@ -22,16 +21,15 @@ const SaveResults = () => {
       [id]: !prev[id],
     }));
   };
-  const user = useUser();
-  const userLoggedId = user?.user?.primaryEmailAddress?.id ?? "";
+  const userId = localStorage.getItem("userId");
   const savedPosts = communityData.filter((item) =>
-    item.savedResponses.some((bookmark) => bookmark.userId === userLoggedId)
+    item.savedResponses.some((bookmark) => bookmark.userId === userId)
   );
 
   const handleLikePost = async (postId: string, userHasLiked: boolean) => {
     // TODO: Implement like post functionality
     const dataToSend = {
-      userId: userLoggedId,
+      userId: userId || "",
       formResponseId: postId,
     };
     try {
@@ -49,7 +47,7 @@ const SaveResults = () => {
   const handleSavePost = async (postId: string, userHasSaved: boolean) => {
     // TODO: Implement save post functionality
     const dataToSend = {
-      userId: userLoggedId,
+      userId: userId || "",
       formResponseId: postId,
     };
     try {
@@ -80,12 +78,12 @@ const SaveResults = () => {
           savedPosts.map((item) => {
             // TODO check if formResponse has likes already
             const userHasLiked = item.likes.some(
-              (like: { userId: string }) => like.userId === userLoggedId
+              (like: { userId: string }) => like.userId === userId
             );
 
             // TODO check if formResponse has Saves already
             const userHasSaved = item.savedResponses.some(
-              (bookmark: { userId: string }) => bookmark.userId === userLoggedId
+              (bookmark: { userId: string }) => bookmark.userId === userId
             );
 
             const isExpanded = expandedItems[item.id] ?? false;

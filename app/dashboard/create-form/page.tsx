@@ -6,7 +6,6 @@ import { Input } from "@/components/ui/input";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import FormService from "@/src/services/formServices";
 import toast from "react-hot-toast";
-import { useUser } from "@clerk/nextjs";
 import { BarLoader } from "react-spinners";
 import { useRouter } from "next/navigation";
 import { formSchema } from "@/src/schemas/formSchema";
@@ -14,7 +13,7 @@ import type { CreateFormData, FormField, Tool } from "@/src/types";
 import { FormFile } from "@/components/file-upload-form";
 
 const TemplateForm = () => {
-  const user = useUser();
+  const userId = localStorage.getItem("userId");
   const [loading, setLoading] = useState(false);
   const files = useRef<HTMLInputElement>(null);
   const navigate = useRouter();
@@ -86,7 +85,7 @@ const TemplateForm = () => {
   };
 
   const handleSubmit = async (values: any) => {
-    if (!values || !user) return;
+    if (!values || !userId) return;
 
     //* Access the files from the ref
     const documents = files.current?.files;
@@ -96,7 +95,7 @@ const TemplateForm = () => {
     if (!s3UrlFile) return;
 
     const valuesToSend: CreateFormData = {
-      userId: user?.user?.primaryEmailAddress?.id ?? "",
+      userId: userId || "",
       name: values.name,
       description: values.description,
       category: values.category,
