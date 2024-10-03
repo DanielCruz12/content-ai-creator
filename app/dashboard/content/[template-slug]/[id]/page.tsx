@@ -4,11 +4,12 @@ import React, { useState } from "react";
 import { FormComponent } from "../../../_components/form";
 import toast from "react-hot-toast";
 import { BarLoader } from "react-spinners";
-import { useUser } from "@clerk/nextjs";
 import FormService from "@/src/services/formServices";
 import { chatSession } from "@/src/utils/aiModel";
 import type { SaveResponseData } from "@/src/types";
 import useGetForms from "@/src/hooks/useGetForms";
+import useGetUsers from "@/src/hooks/useGetUsers";
+import { useUser } from "@clerk/nextjs";
 
 interface CreateNewContentProps {
   params: {
@@ -24,8 +25,16 @@ interface FormValues {
 const CreateNewContent: React.FC<CreateNewContentProps> = ({ params }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [dataOutput, setDataOutput] = useState<string | null>(null);
-  const user = useUser();
   const { data } = useGetForms();
+  const { user } = useUser();
+  const { users } = useGetUsers();
+
+  const matchedUser = users.find(
+    (u: any) => u.email === user?.emailAddresses[0]?.emailAddress
+  );
+
+  // Retorna el id del usuario encontrado o null si no se encuentra coincidencia
+  const userId = matchedUser ? matchedUser.id : null;
 
   const selectedTemplate = data.find(
     (item) => item.slug === params["template-slug"]
@@ -46,7 +55,6 @@ const CreateNewContent: React.FC<CreateNewContentProps> = ({ params }) => {
     try {
       if (!params.id) return;
       setLoading(true);
-
       //* depends on what model the user wants:
       const result = await chatSession.sendMessage(finalPrompt);
       setDataOutput(result.response.text());
@@ -56,7 +64,7 @@ const CreateNewContent: React.FC<CreateNewContentProps> = ({ params }) => {
         style: { backgroundColor: "#e7e6e6" },
       });
       const dataToSend: SaveResponseData = {
-        userId: user.user?.emailAddresses[0].id ?? "",
+        userId,
         responseData: result.response.text(),
         share_status: false,
         formId: params.id,
