@@ -30,7 +30,7 @@ export const FormComponent: React.FC<FormComponentProps> = ({
             <div className="flex flex-col">
               <CardTitle className=" text-primary">
                 {selectedTemplate.name}
-                <Badge className=" mx-3 md:px-3 md:mx-3 mb-1">
+                <Badge variant="outline" className=" mx-3 md:px-3 md:mx-3 mb-1">
                   {selectedTemplate.category}
                 </Badge>
               </CardTitle>
