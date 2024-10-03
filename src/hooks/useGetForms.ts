@@ -10,6 +10,7 @@ const useGetForms = () => {
     try {
       const res = await FormService.getFormsAi();
       setData(res);
+      localStorage.setItem("forms", JSON.stringify(res));
     } catch (error) {
       console.log(error);
     } finally {

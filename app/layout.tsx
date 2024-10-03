@@ -146,6 +146,7 @@ export default function RootLayout({
         className={cn("min-h-screen font-sans antialiased", fontSans.variable)}
       >
         <ClerkProvider
+          afterSignOutUrl={"/"}
           appearance={{
             baseTheme: dark,
             layout: {
