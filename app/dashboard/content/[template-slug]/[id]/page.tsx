@@ -1,15 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
-import { FormComponent } from "../../../_components/form";
-import toast from "react-hot-toast";
+import React, { useEffect, useState } from "react";
+import { useUser } from "@clerk/nextjs";
 import { BarLoader } from "react-spinners";
+import toast from "react-hot-toast";
+import type { SaveResponseData } from "@/src/types";
+import { FormComponent } from "../../../_components/form";
 import FormService from "@/src/services/formServices";
 import { chatSession } from "@/src/utils/aiModel";
-import type { SaveResponseData } from "@/src/types";
-import useGetForms from "@/src/hooks/useGetForms";
 import useGetUsers from "@/src/hooks/useGetUsers";
-import { useUser } from "@clerk/nextjs";
 
 interface CreateNewContentProps {
   params: {
@@ -25,25 +24,31 @@ interface FormValues {
 const CreateNewContent: React.FC<CreateNewContentProps> = ({ params }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [dataOutput, setDataOutput] = useState<string | null>(null);
-  const { data } = useGetForms();
   const { user } = useUser();
   const { users } = useGetUsers();
+  const [data, setData] = useState<any[]>([]);
 
-  const matchedUser = users.find(
-    (u: any) => u.email === user?.emailAddresses[0]?.emailAddress
-  );
-
-  // Retorna el id del usuario encontrado o null si no se encuentra coincidencia
-  const userId = matchedUser ? matchedUser.id : null;
-  if (typeof window !== 'undefined') {
-    localStorage.setItem('userId', userId);
-  }
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedData = JSON.parse(localStorage.getItem("forms") || "[]");
+      setData(storedData);
+    }
+  }, []);
 
   const selectedTemplate = data.find(
-    (item) => item.slug === params["template-slug"]
+    (item: any) => item.slug === params["template-slug"]
   );
 
   const generateAIContent = async (values: FormValues) => {
+    const matchedUser = users.find(
+      (u: any) => u.email === user?.emailAddresses[0]?.emailAddress
+    );
+
+    const userId = matchedUser ? matchedUser.id : null;
+    if (typeof window !== "undefined") {
+      localStorage.setItem("userId", userId);
+    }
+
     if (!selectedTemplate) return;
 
     const formValues = Object.entries(values)
