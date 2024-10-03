@@ -54,7 +54,7 @@ export default function RootLayout({
             <ModeToggle />
           </div>
           <SignedIn>
-            <UserButton />
+            <UserButton afterSignOutUrl="/" />
           </SignedIn>
         </header>
 
