@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { LogOut, Settings } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function RootLayout({
   children,
@@ -30,8 +31,8 @@ export default function RootLayout({
 }>) {
   const [open, setOpen] = useState(false);
   const { signOut, openUserProfile } = useClerk();
+  const router = useRouter();
   const { user } = useUser();
-  console.log(user?.imageUrl);
 
   return (
     <div className="min-h-screen">
@@ -97,7 +98,10 @@ export default function RootLayout({
               </DropdownMenuItem>
               <DropdownMenuItem
                 className="flex items-center space-x-2 px-3 py-2 mb-3"
-                onClick={() => signOut()}
+                onClick={async () => {
+                  router.push("/");
+                  await signOut();
+                }}
               >
                 <LogOut className="w-4 h-4 mr-2" /> Sign out
               </DropdownMenuItem>
